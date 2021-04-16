@@ -1,0 +1,124 @@
+2021-03-29 22:03:39,398  * Running on http://127.0.0.1:8010/ (Press CTRL+C to quit)
+2021-03-29 22:03:43,753 Looking up the all the items in the catalog database.
+2021-03-29 22:03:43,754 Lookup Successful
+2021-03-29 22:03:43,754 127.0.0.1 - - [29/Mar/2021 22:03:43] "[37mGET /item HTTP/1.1[0m" 200 -
+2021-03-29 22:57:23,593 Looking up the items with topic 'graduate school' in catalog database.
+2021-03-29 22:57:23,594 Lookup Successful
+2021-03-29 22:57:23,606 Looking up the item with id '4' in catalog database.
+2021-03-29 22:57:23,607 Lookup Successful
+2021-03-29 22:57:23,627 Looking up the item with id '4' in catalog database.
+2021-03-29 22:57:23,628 Lookup Successful
+2021-03-29 22:57:23,633 Looking up the item with id '4' in catalog database for updating the item.
+2021-03-29 22:57:23,635 Updating the count of the book with id = '4'
+2021-03-29 22:57:23,638 Catalog database update successful
+2021-03-29 22:57:26,918 Looking up the items with topic 'distributed systems' in catalog database.
+2021-03-29 22:57:26,918 Lookup Successful
+2021-03-29 22:57:26,929 Looking up the item with id '1' in catalog database.
+2021-03-29 22:57:26,929 Lookup Successful
+2021-03-29 22:57:26,957 Looking up the item with id '1' in catalog database.
+2021-03-29 22:57:26,958 Lookup Successful
+2021-03-29 22:57:26,963 Looking up the item with id '1' in catalog database for updating the item.
+2021-03-29 22:57:26,965 Updating the count of the book with id = '1'
+2021-03-29 22:57:26,966 Catalog database update successful
+2021-03-29 22:57:30,729 Looking up the items with topic 'distributed systems' in catalog database.
+2021-03-29 22:57:30,729 Lookup Successful
+2021-03-29 22:57:30,745 Looking up the item with id '1' in catalog database.
+2021-03-29 22:57:30,745 Lookup Successful
+2021-03-29 22:57:30,777 Looking up the item with id '1' in catalog database.
+2021-03-29 22:57:30,778 Lookup Successful
+2021-03-29 22:57:30,782 Looking up the item with id '1' in catalog database for updating the item.
+2021-03-29 22:57:30,785 Updating the count of the book with id = '1'
+2021-03-29 22:57:30,786 Catalog database update successful
+2021-03-29 22:57:33,035 Looking up the items with topic 'distributed systems' in catalog database.
+2021-03-29 22:57:33,036 Lookup Successful
+2021-03-29 22:57:33,052 Looking up the item with id '2' in catalog database.
+2021-03-29 22:57:33,053 Lookup Successful
+2021-03-29 22:57:34,104 Looking up the item with id '2' in catalog database.
+2021-03-29 22:57:34,105 Lookup Successful
+2021-03-29 22:57:34,109 Looking up the item with id '2' in catalog database for updating the item.
+2021-03-29 22:57:34,110 Updating the count of the book with id = '2'
+2021-03-29 22:57:34,111 Catalog database update successful
+2021-03-29 22:57:36,293 Looking up the items with topic 'graduate school' in catalog database.
+2021-03-29 22:57:36,293 Lookup Successful
+2021-03-29 22:57:36,304 Looking up the item with id '3' in catalog database.
+2021-03-29 22:57:36,304 Lookup Successful
+2021-03-29 22:57:36,323 Looking up the item with id '3' in catalog database.
+2021-03-29 22:57:36,323 Lookup Successful
+2021-03-29 22:57:36,328 Looking up the item with id '3' in catalog database for updating the item.
+2021-03-29 22:57:36,329 Updating the count of the book with id = '3'
+2021-03-29 22:57:36,337 Catalog database update successful
+2021-04-03 23:53:30,600 Looking up the items with topic 'distributed systems' in catalog database.
+2021-04-03 23:53:30,600 Lookup Successful
+2021-04-03 23:53:30,615 Looking up the item with id '1' in catalog database.
+2021-04-03 23:53:30,616 Lookup Successful
+2021-04-03 23:53:30,688 Looking up the item with id '1' in catalog database.
+2021-04-03 23:53:30,688 Lookup Successful
+2021-04-03 23:53:30,693 Looking up the item with id '1' in catalog database for updating the item.
+2021-04-03 23:53:30,716 Updating the count of the book with id = '1'
+2021-04-03 23:53:30,718 Catalog database update successful2021-04-05 16:02:33,678 Looking up the item with id '2' in catalog database.
+2021-04-05 16:02:33,717 Lookup Successful
+2021-04-05 16:02:56,346 Looking up the item with id '2' in catalog database for updating the item.
+2021-04-05 16:02:56,356 Catalog database update successful
+2021-04-05 16:03:25,327 Looking up the item with id '2' in catalog database.
+2021-04-05 16:03:25,328 Lookup Successful
+2021-04-05 16:04:04,090 Looking up the item with id '2' in catalog database for updating the item.
+2021-04-05 16:04:04,105 Catalog database update successful
+2021-04-05 16:05:57,996 Looking up the item with id '2' in catalog database.
+2021-04-05 16:05:57,997 Lookup Successful
+2021-04-05 16:06:08,435 Looking up the item with id '2' in catalog database for updating the item.
+2021-04-05 16:06:08,437 Catalog database update successful
+2021-04-05 16:06:12,123 Looking up the item with id '2' in catalog database.
+2021-04-05 16:06:12,123 Lookup Successful
+2021-04-05 16:08:10,384 Looking up the item with id '2' in catalog database.
+2021-04-05 16:08:10,385 Lookup Successful
+2021-04-05 16:08:15,572 Looking up the item with id '2' in catalog database for updating the item.
+2021-04-05 16:08:15,575 Catalog database update successful
+2021-04-05 16:08:20,979 Looking up the item with id '2' in catalog database.
+2021-04-05 16:08:20,979 Lookup Successful
+2021-04-05 16:08:26,061 Looking up the item with id '2' in catalog database for updating the item.
+2021-04-05 16:08:26,062 Catalog database update successful
+2021-04-05 16:08:29,660 Looking up the item with id '2' in catalog database.
+2021-04-05 16:08:29,661 Lookup Successful
+2021-04-05 16:49:04,179 Looking up the item with id '2' in catalog database.
+2021-04-05 16:49:04,287 Lookup Successful
+2021-04-05 16:49:22,210 Looking up the item with id '2' in catalog database for updating the item.
+2021-04-05 16:50:35,697 Looking up the item with id '2' in catalog database for updating the item.
+2021-04-05 16:50:35,844 Catalog database update successful
+2021-04-05 16:50:41,662 Looking up the item with id '2' in catalog database.
+2021-04-05 16:50:41,662 Lookup Successful
+2021-04-05 16:51:19,253 Looking up the item with id '2' in catalog database for updating the item.
+2021-04-05 16:51:51,482 Looking up the item with id '2' in catalog database for updating the item.
+2021-04-05 16:52:01,959 Looking up the item with id '2' in catalog database for updating the item.
+2021-04-05 16:52:25,452 Looking up the item with id '2' in catalog database for updating the item.
+2021-04-05 16:52:56,954 Looking up the item with id '2' in catalog database for updating the item.
+2021-04-05 16:53:12,168 Looking up the item with id '2' in catalog database for updating the item.
+2021-04-05 16:55:07,492 Looking up the item with id '2' in catalog database for updating the item.
+2021-04-05 16:55:34,994 Looking up the item with id '2' in catalog database for updating the item.
+2021-04-05 16:55:34,996 Catalog database update successful
+2021-04-05 16:55:46,814 Looking up the item with id '2' in catalog database for updating the item.
+2021-04-05 16:55:46,978 Catalog database update successful
+2021-04-05 16:55:52,315 Looking up the item with id '2' in catalog database.
+2021-04-05 16:55:52,316 Lookup Successful
+2021-04-05 16:56:01,347 Looking up the item with id '2' in catalog database for updating the item.
+2021-04-05 16:56:01,515 Catalog database update successful
+2021-04-05 16:56:32,768 Looking up the item with id '2' in catalog database for updating the item.
+2021-04-05 16:56:32,937 Catalog database update successful
+2021-04-05 16:56:42,888 Looking up the item with id '2' in catalog database.
+2021-04-05 16:56:42,889 Lookup Successful
+2021-04-05 16:57:21,805 Looking up the item with id '2' in catalog database for updating the item.
+2021-04-05 16:57:53,277 Looking up the item with id '2' in catalog database for updating the item.
+2021-04-05 16:59:06,450 Looking up the item with id '2' in catalog database for updating the item.
+2021-04-05 16:59:06,619 Catalog database update successful
+2021-04-05 16:59:10,104 Looking up the item with id '2' in catalog database.
+2021-04-05 16:59:10,104 Lookup Successful
+2021-04-05 21:45:59,302 Looking up the item with id '2' in catalog database.
+2021-04-05 21:45:59,321 Lookup Successful
+2021-04-05 21:46:20,517 Looking up the item with id '2' in catalog database for updating the item.
+2021-04-05 21:47:39,298 Looking up the item with id '2' in catalog database for updating the item.
+2021-04-05 21:47:39,303 Updating the count of item 2
+2021-04-05 21:47:39,615 Catalog database update successful
+2021-04-05 21:47:50,708 Looking up the item with id '2' in catalog database.
+2021-04-05 21:47:50,710 Lookup Successful
+2021-04-05 23:26:20,300 Looking up the item with id '2' in catalog database for updating the item.
+2021-04-05 23:26:20,327 Updating the count of item 2
+2021-04-05 23:26:20,493 Catalog database update successful

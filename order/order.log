@@ -1,0 +1,186 @@
+<<<<<<< HEAD
+2021-03-29 21:46:12,782 Recieved a buy request of the item 1
+2021-03-29 21:46:12,791 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 21:46:12,795 http://127.0.0.1:8011 "GET /item/1 HTTP/1.1" 200 262
+2021-03-29 21:46:12,796 Item with id 1 present in the catalog server. Going ahead to buy it
+2021-03-29 21:46:12,798 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 21:46:12,983 http://127.0.0.1:8011 "PUT /item/1 HTTP/1.1" 201 241
+2021-03-29 21:46:12,983 Successfully bought the item 1 from the catalog server.
+2021-03-29 22:57:23,618 Recieved a buy request of the item 4
+2021-03-29 22:57:23,625 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:57:23,628 http://127.0.0.1:8011 "GET /item/4 HTTP/1.1" 200 251
+2021-03-29 22:57:23,630 Item with id 4 present in the catalog server. Going ahead to buy it
+2021-03-29 22:57:23,631 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:57:23,807 http://127.0.0.1:8011 "PUT /item/4 HTTP/1.1" 201 230
+2021-03-29 22:57:23,809 Successfully bought the item 4 from the catalog server.
+2021-03-29 22:57:26,940 Recieved a buy request of the item 1
+2021-03-29 22:57:26,954 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:57:26,959 http://127.0.0.1:8011 "GET /item/1 HTTP/1.1" 200 263
+2021-03-29 22:57:26,960 Item with id 1 present in the catalog server. Going ahead to buy it
+2021-03-29 22:57:26,961 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:57:27,051 http://127.0.0.1:8011 "PUT /item/1 HTTP/1.1" 201 242
+2021-03-29 22:57:27,052 Successfully bought the item 1 from the catalog server.
+2021-03-29 22:57:30,761 Recieved a buy request of the item 1
+2021-03-29 22:57:30,776 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:57:30,779 http://127.0.0.1:8011 "GET /item/1 HTTP/1.1" 200 263
+2021-03-29 22:57:30,779 Item with id 1 present in the catalog server. Going ahead to buy it
+2021-03-29 22:57:30,780 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:57:30,920 http://127.0.0.1:8011 "PUT /item/1 HTTP/1.1" 201 242
+2021-03-29 22:57:30,921 Successfully bought the item 1 from the catalog server.
+2021-03-29 22:57:34,091 Recieved a buy request of the item 2
+2021-03-29 22:57:34,102 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:57:34,106 http://127.0.0.1:8011 "GET /item/2 HTTP/1.1" 200 229
+2021-03-29 22:57:34,106 Item with id 2 present in the catalog server. Going ahead to buy it
+2021-03-29 22:57:34,107 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:57:34,191 http://127.0.0.1:8011 "PUT /item/2 HTTP/1.1" 201 208
+2021-03-29 22:57:34,192 Successfully bought the item 2 from the catalog server.
+2021-03-29 22:57:36,313 Recieved a buy request of the item 3
+2021-03-29 22:57:36,321 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:57:36,324 http://127.0.0.1:8011 "GET /item/3 HTTP/1.1" 200 253
+2021-03-29 22:57:36,325 Item with id 3 present in the catalog server. Going ahead to buy it
+2021-03-29 22:57:36,326 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:57:36,416 http://127.0.0.1:8011 "PUT /item/3 HTTP/1.1" 201 232
+2021-03-29 22:57:36,416 Successfully bought the item 3 from the catalog server.
+2021-03-30 01:29:05,786  * Detected change in 'C:\\Users\\Himanshu\\Anaconda3\\Lib\\site-packages\\chardet\\__pycache__\\chardistribution.cpython-36.pyc', reloading
+2021-04-03 23:53:30,631 Recieved a buy request of the item 1
+2021-04-03 23:53:30,685 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-04-03 23:53:30,689 http://127.0.0.1:8011 "GET /item/1 HTTP/1.1" 200 263
+2021-04-03 23:53:30,690 Item with id 1 present in the catalog server. Going ahead to buy it
+2021-04-03 23:53:30,691 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-04-03 23:53:30,962 http://127.0.0.1:8011 "PUT /item/1 HTTP/1.1" 201 242
+2021-04-03 23:53:30,962 Successfully bought the item 1 from the catalog server.
+=======
+2021-03-29 22:38:41,498 Recieved a buy request of the item 3
+2021-03-29 22:38:41,510 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:38:41,514 http://127.0.0.1:8011 "GET /item/3 HTTP/1.1" 200 253
+2021-03-29 22:38:41,514 Item with id 3 present in the catalog server. Going ahead to buy it
+2021-03-29 22:38:41,514 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:38:41,534 http://127.0.0.1:8011 "PUT /item/3 HTTP/1.1" 201 232
+2021-03-29 22:38:41,534 Successfully bought the item 3 from the catalog server.
+2021-03-29 22:38:44,107 Recieved a buy request of the item 1
+2021-03-29 22:38:44,119 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:38:44,123 http://127.0.0.1:8011 "GET /item/1 HTTP/1.1" 200 263
+2021-03-29 22:38:44,132 Item with id 1 present in the catalog server. Going ahead to buy it
+2021-03-29 22:38:44,132 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:38:44,140 http://127.0.0.1:8011 "PUT /item/1 HTTP/1.1" 201 242
+2021-03-29 22:38:44,140 Successfully bought the item 1 from the catalog server.
+2021-03-29 22:38:46,204 Recieved a buy request of the item 3
+2021-03-29 22:38:46,216 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:38:46,220 http://127.0.0.1:8011 "GET /item/3 HTTP/1.1" 200 253
+2021-03-29 22:38:46,220 Item with id 3 present in the catalog server. Going ahead to buy it
+2021-03-29 22:38:46,220 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:38:46,244 http://127.0.0.1:8011 "PUT /item/3 HTTP/1.1" 201 232
+2021-03-29 22:38:46,244 Successfully bought the item 3 from the catalog server.
+2021-03-29 22:38:48,291 Recieved a buy request of the item 1
+2021-03-29 22:38:48,303 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:38:48,307 http://127.0.0.1:8011 "GET /item/1 HTTP/1.1" 200 263
+2021-03-29 22:38:48,307 Item with id 1 present in the catalog server. Going ahead to buy it
+2021-03-29 22:38:48,307 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:38:48,327 http://127.0.0.1:8011 "PUT /item/1 HTTP/1.1" 201 242
+2021-03-29 22:38:48,327 Successfully bought the item 1 from the catalog server.
+2021-03-29 22:38:50,381 Recieved a buy request of the item 2
+2021-03-29 22:38:50,393 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:38:50,397 http://127.0.0.1:8011 "GET /item/2 HTTP/1.1" 200 229
+2021-03-29 22:38:50,401 Item with id 2 present in the catalog server. Going ahead to buy it
+2021-03-29 22:38:50,401 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:38:50,427 http://127.0.0.1:8011 "PUT /item/2 HTTP/1.1" 201 208
+2021-03-29 22:38:50,427 Successfully bought the item 2 from the catalog server.
+2021-03-29 22:53:04,028 Recieved a buy request of the item 2
+2021-03-29 22:53:04,059 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:53:04,069 http://127.0.0.1:8011 "GET /item/2 HTTP/1.1" 200 229
+2021-03-29 22:53:04,071 Item with id 2 present in the catalog server. Going ahead to buy it
+2021-03-29 22:53:04,075 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:53:04,107 http://127.0.0.1:8011 "PUT /item/2 HTTP/1.1" 201 208
+2021-03-29 22:53:04,109 Successfully bought the item 2 from the catalog server.
+2021-03-29 22:53:07,177 Recieved a buy request of the item 4
+2021-03-29 22:53:07,187 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:53:07,191 http://127.0.0.1:8011 "GET /item/4 HTTP/1.1" 200 251
+2021-03-29 22:53:07,191 Item with id 4 present in the catalog server. Going ahead to buy it
+2021-03-29 22:53:07,192 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:53:07,216 http://127.0.0.1:8011 "PUT /item/4 HTTP/1.1" 201 230
+2021-03-29 22:53:07,217 Successfully bought the item 4 from the catalog server.
+2021-03-29 22:53:09,305 Recieved a buy request of the item 3
+2021-03-29 22:53:09,328 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:53:09,336 http://127.0.0.1:8011 "GET /item/3 HTTP/1.1" 200 253
+2021-03-29 22:53:09,337 Item with id 3 present in the catalog server. Going ahead to buy it
+2021-03-29 22:53:09,341 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:53:09,360 http://127.0.0.1:8011 "PUT /item/3 HTTP/1.1" 201 232
+2021-03-29 22:53:09,362 Successfully bought the item 3 from the catalog server.
+2021-03-29 22:53:11,474 Recieved a buy request of the item 1
+2021-03-29 22:53:11,497 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:53:11,506 http://127.0.0.1:8011 "GET /item/1 HTTP/1.1" 200 263
+2021-03-29 22:53:11,507 Item with id 1 present in the catalog server. Going ahead to buy it
+2021-03-29 22:53:11,511 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:53:11,558 http://127.0.0.1:8011 "PUT /item/1 HTTP/1.1" 201 242
+2021-03-29 22:53:11,560 Successfully bought the item 1 from the catalog server.
+2021-03-29 22:53:13,634 Recieved a buy request of the item 2
+2021-03-29 22:53:13,646 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:53:13,651 http://127.0.0.1:8011 "GET /item/2 HTTP/1.1" 200 229
+2021-03-29 22:53:13,652 Item with id 2 present in the catalog server. Going ahead to buy it
+2021-03-29 22:53:13,653 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:53:13,671 http://127.0.0.1:8011 "PUT /item/2 HTTP/1.1" 201 208
+2021-03-29 22:53:13,672 Successfully bought the item 2 from the catalog server.
+2021-03-29 22:53:58,379 Recieved a buy request of the item 3
+2021-03-29 22:53:58,401 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:53:58,410 http://127.0.0.1:8011 "GET /item/3 HTTP/1.1" 200 253
+2021-03-29 22:53:58,412 Item with id 3 present in the catalog server. Going ahead to buy it
+2021-03-29 22:53:58,416 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:53:58,437 http://127.0.0.1:8011 "PUT /item/3 HTTP/1.1" 201 232
+2021-03-29 22:53:58,439 Successfully bought the item 3 from the catalog server.
+2021-03-29 22:54:00,550 Recieved a buy request of the item 4
+2021-03-29 22:54:00,573 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:54:00,582 http://127.0.0.1:8011 "GET /item/4 HTTP/1.1" 200 251
+2021-03-29 22:54:00,584 Item with id 4 present in the catalog server. Going ahead to buy it
+2021-03-29 22:54:00,588 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:54:00,630 http://127.0.0.1:8011 "PUT /item/4 HTTP/1.1" 201 230
+2021-03-29 22:54:00,631 Successfully bought the item 4 from the catalog server.
+2021-03-29 22:54:02,702 Recieved a buy request of the item 2
+2021-03-29 22:54:02,713 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:54:02,718 http://127.0.0.1:8011 "GET /item/2 HTTP/1.1" 200 229
+2021-03-29 22:54:02,719 Item with id 2 present in the catalog server. Going ahead to buy it
+2021-03-29 22:54:02,720 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:54:02,732 http://127.0.0.1:8011 "PUT /item/2 HTTP/1.1" 201 208
+2021-03-29 22:54:02,732 Successfully bought the item 2 from the catalog server.
+2021-03-29 22:54:04,829 Recieved a buy request of the item 2
+2021-03-29 22:54:04,835 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:54:04,838 http://127.0.0.1:8011 "GET /item/2 HTTP/1.1" 200 229
+2021-03-29 22:54:04,839 Item with id 2 present in the catalog server. Going ahead to buy it
+2021-03-29 22:54:04,839 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:54:04,865 http://127.0.0.1:8011 "PUT /item/2 HTTP/1.1" 201 208
+2021-03-29 22:54:04,866 Successfully bought the item 2 from the catalog server.
+2021-03-29 22:55:42,161 Recieved a buy request of the item 1
+2021-03-29 22:55:42,191 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:55:42,199 http://127.0.0.1:8011 "GET /item/1 HTTP/1.1" 200 263
+2021-03-29 22:55:42,201 Item with id 1 present in the catalog server. Going ahead to buy it
+2021-03-29 22:55:42,204 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:55:42,233 http://127.0.0.1:8011 "PUT /item/1 HTTP/1.1" 201 242
+2021-03-29 22:55:42,235 Successfully bought the item 1 from the catalog server.
+2021-03-29 22:55:44,356 Recieved a buy request of the item 3
+2021-03-29 22:55:44,375 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:55:44,378 http://127.0.0.1:8011 "GET /item/3 HTTP/1.1" 200 253
+2021-03-29 22:55:44,379 Item with id 3 present in the catalog server. Going ahead to buy it
+2021-03-29 22:55:44,380 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:55:44,405 http://127.0.0.1:8011 "PUT /item/3 HTTP/1.1" 201 232
+2021-03-29 22:55:44,405 Successfully bought the item 3 from the catalog server.
+2021-03-29 22:55:48,492 Recieved a buy request of the item 1
+2021-03-29 22:55:48,501 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:55:48,504 http://127.0.0.1:8011 "GET /item/1 HTTP/1.1" 200 263
+2021-03-29 22:55:48,505 Item with id 1 present in the catalog server. Going ahead to buy it
+2021-03-29 22:55:48,506 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 22:55:48,537 http://127.0.0.1:8011 "PUT /item/1 HTTP/1.1" 201 242
+2021-03-29 22:55:48,538 Successfully bought the item 1 from the catalog server.
+2021-03-29 23:08:29,462 Recieved a buy request of the item 4
+2021-03-29 23:08:29,492 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 23:08:29,501 http://127.0.0.1:8011 "GET /item/4 HTTP/1.1" 200 251
+2021-03-29 23:08:29,503 Item with id 4 present in the catalog server. Going ahead to buy it
+2021-03-29 23:08:29,507 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 23:08:29,559 http://127.0.0.1:8011 "PUT /item/4 HTTP/1.1" 201 230
+2021-03-29 23:08:29,561 Successfully bought the item 4 from the catalog server.
+2021-03-29 23:08:31,664 Recieved a buy request of the item 4
+2021-03-29 23:08:31,686 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 23:08:31,695 http://127.0.0.1:8011 "GET /item/4 HTTP/1.1" 200 251
+2021-03-29 23:08:31,696 Item with id 4 present in the catalog server. Going ahead to buy it
+2021-03-29 23:08:31,700 Starting new HTTP connection (1): 127.0.0.1:8011
+2021-03-29 23:08:31,735 http://127.0.0.1:8011 "PUT /item/4 HTTP/1.1" 201 230
+2021-03-29 23:08:31,736 Successfully bought the item 4 from the catalog server.
+>>>>>>> c5a05e396dd1941807fd374cb8725e1c90819818
