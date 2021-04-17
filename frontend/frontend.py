@@ -5,16 +5,21 @@ from flask import jsonify
 from response_util import get_failed_response,get_success_response 
 import sys
 sys.path.insert(1, '../')
-from const import CATALOG_SERVER, ORDER_SERVER
+# from const import CATALOG_SERVER, ORDER_SERVER
 import logging
 logging.basicConfig(filename="frontend.log", level=logging.DEBUG, format='%(asctime)s %(message)s', filemode='w')
 
 app = Flask(__name__)
 
+catalogA_url = str(sys.argv[3])
+catalogB_url = str(sys.argv[4])
+orderA_url = str(sys.argv[5])
+orderB_url = str(sys.argv[6])
+
 # defining the default page
 @app.route('/', methods=['GET'])
 def hello_world():
-    return "Welcome to Book Store!"
+    return "Welcome to Book Store!. %s %s %s %s"%(catalogA_url, catalogB_url, orderA_url, orderB_url)
 
 # the buy method which makes calls to the order server to buy an item based on provided item id
 @app.route('/buy', methods=['GET'])
@@ -67,3 +72,6 @@ def lookup():
     except Exception as e:
         app.logger.info("Failed to connect to catalog server. Error: %s" % (str(e)))
         return get_failed_response(message=str(e))
+
+if __name__=='__main__':
+    app.run(host=str(sys.argv[1]), port=str(sys.argv[2]))

@@ -6,11 +6,11 @@ import requests
 from datetime import datetime
 import sys
 sys.path.insert(1, '../')
-from const import CATALOG_SERVER
+# from const import CATALOG_SERVER
 import logging
 logging.basicConfig(filename="order.log", level=logging.DEBUG, format='%(asctime)s %(message)s %(threadName)s')
 
-catalog_url = CATALOG_SERVER['IP'] + ":" + str(CATALOG_SERVER['PORT'])
+# catalog_url = CATALOG_SERVER['IP'] + ":" + str(CATALOG_SERVER['PORT'])
 
 app = Flask(__name__)
 # app.config.from_object(Config)
@@ -19,12 +19,15 @@ log.disabled = True
 
 from sqlite_db import order
 
+replica_url = str(sys.argv[3])
+catalog_url = str(sys.argv[4])
+
 ##root 
 @app.route('/')
 @app.route('/index')
 @app.route('/home')
 def index():
-	return "Hi! You have reached the order server."
+	return "Hi! You have reached the order server. Replica is %s Catalog is %s"%(replica_url, catalog_url)
 
 @app.route('/orders')
 def orders():
@@ -71,3 +74,7 @@ def buy(item_id = None):
             app.logger.error("Error: %s" % (str(r.json())))
             return get_failed_response(message = "Failed to update catalog server.")
         return get_failed_response(message = "The item with id %s is no longer present in the catalog server" % (item_id), status_code = 404)
+
+if __name__=='__main__':
+
+    app.run(host=str(sys.argv[1]), port=str(sys.argv[2]))

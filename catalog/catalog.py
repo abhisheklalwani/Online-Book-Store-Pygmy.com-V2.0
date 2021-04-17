@@ -4,12 +4,15 @@ from pydantic import BaseModel
 from response_util import get_failed_response,get_success_response
 import json
 import logging
+import sys
 
 logging.basicConfig(filename="catalog.log",level=logging.DEBUG,
 					format='%(asctime)s %(message)s')
 # logger=logging.getLogger()
 log = logging.getLogger('werkzeug')
 log.disabled = True
+
+replica_url = str(sys.argv[3])
 
 app = Flask(__name__)
 
@@ -52,7 +55,7 @@ def catalog():
     Uncomment to re-initialize the database
     '''
     
-    return 'Hello, catalog!'
+    return 'Hello, catalog!. My replica is %s'%(replica_url)
 
 '''
 item route is used for search, lookup and update.
@@ -142,3 +145,6 @@ def update_by_id(id_):
     
     except Exception as e:
         return get_failed_response(message=str(e))
+
+if __name__=='__main__':
+    app.run(host=str(sys.argv[1]), port=str(sys.argv[2]))
