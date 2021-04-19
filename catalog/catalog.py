@@ -4,15 +4,17 @@ from pydantic import BaseModel
 from response_util import get_failed_response,get_success_response
 import json
 import logging
+import requests
 import sys
+sys.path.insert(1, '../')
+
+catalog_url = str(sys.argv[3])
 
 logging.basicConfig(filename="catalog.log",level=logging.DEBUG,
-					format='%(asctime)s %(message)s')
+                    format='%(asctime)s %(message)s')
 # logger=logging.getLogger()
 log = logging.getLogger('werkzeug')
 log.disabled = True
-
-replica_url = str(sys.argv[3])
 
 app = Flask(__name__)
 
@@ -40,10 +42,16 @@ if response == None:
     values_2 = (2, 'RPCs for Dummies.', 5, 10, 'distributed systems');
     values_3 = (3, 'Xen and the Art of Surviving Graduate School.', 5, 10, 'graduate school');
     values_4 = (4, 'Cooking for the Impatient Graduate Student.', 5, 10, 'graduate school');
+    values_5 = (5, 'How to finish Project 3 on time', 5, 10, 'distributed systems');
+    values_6 = (6, 'Why theory classes are so hard.', 5, 10, 'graduate school');
+    values_7 = (7, 'Spring in the Pioneer Valley', 5, 10, 'graduate school');
     cur.execute(sql_query,values_1)
     cur.execute(sql_query,values_2)
     cur.execute(sql_query,values_3)
     cur.execute(sql_query,values_4)
+    cur.execute(sql_query,values_5)
+    cur.execute(sql_query,values_6)
+    cur.execute(sql_query,values_7)
 con.commit()
 con.close()
 
@@ -55,7 +63,7 @@ def catalog():
     Uncomment to re-initialize the database
     '''
     
-    return 'Hello, catalog!. My replica is %s'%(replica_url)
+    return 'Hello, catalog!'
 
 '''
 item route is used for search, lookup and update.
@@ -109,6 +117,53 @@ def item(id_ = None):
 
 @app.route("/item/<id_>",methods = ['PUT'])
 def update_by_id(id_):
+    try:
+        con = sqlite3.connect('catalog.db')
+        con.row_factory = dict_factory
+        cur = con.cursor()
+        sql_query ="select * from catalog where id = ?;"
+        select_values = (id_,)
+        app.logger.info("Looking up the item with id '%s' in catalog database for updating the item." % (id_))
+        cur.execute(sql_query,select_values)
+        response = cur.fetchone()
+        data = json.loads(request.data)
+
+        if 'count' in data:
+            app.logger.info("Updating the count of item %s" % (id_))
+            count = data['count']
+            if count < 0:
+                sign = "-"
+                count = count*(-1)
+                sql_query = "UPDATE catalog SET count = count %s %s where id = %s AND count > 0;" % (sign, count, id_)
+                cur.execute(sql_query) 
+                payload = {"count" : -count}
+                app.logger.info("Propagating the count of item %s" % (id_))
+                r = requests.put(catalog_url+"/item/propagate/%s"%(id_), data = json.dumps(payload))
+            else:
+                sign = "+"
+                sql_query = "UPDATE catalog SET count = count %s %s where id = %s;" % (sign, count, id_)
+                cur.execute(sql_query) 
+                payload = {"count" : count}
+                app.logger.info("Propagating the count of item %s" % (id_))
+                r = requests.put(catalog_url+"/item/propagate/%s"%(id_), data = json.dumps(payload))
+
+        if 'cost' in data:
+            app.logger.info("Updating the cost of item %s" % (id_))
+            sql_query = "UPDATE catalog SET cost = %s where id = %s;"%(data['cost'], id_)
+            cur.execute(sql_query)
+            payload = {"cost" : data['cost']}
+            app.logger.info("Propagating the cost of item %s" % (id_))
+            r = requests.put(catalog_url+"/item/propagate/%s"%(item_id), data = json.dumps(payload))
+        con.commit()
+        con.close()
+        app.logger.info('Catalog database update successful')
+        return get_success_response('item',{}, status_code=201)
+    
+    except Exception as e:
+        return get_failed_response(message=str(e))
+
+@app.route("/item/propagate/<id_>",methods = ['PUT'])
+def propagate_by_id(id_):
     try:
         con = sqlite3.connect('catalog.db')
         con.row_factory = dict_factory

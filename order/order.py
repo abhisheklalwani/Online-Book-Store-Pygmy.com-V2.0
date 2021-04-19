@@ -6,11 +6,13 @@ import requests
 from datetime import datetime
 import sys
 sys.path.insert(1, '../')
-# from const import CATALOG_SERVER
 import logging
 logging.basicConfig(filename="order.log", level=logging.DEBUG, format='%(asctime)s %(message)s %(threadName)s')
 
-# catalog_url = CATALOG_SERVER['IP'] + ":" + str(CATALOG_SERVER['PORT'])
+# order 1 contacts catalog 1
+
+catalog_url = str(sys.argv[4])
+order_url= str(sys.argv[3])
 
 app = Flask(__name__)
 # app.config.from_object(Config)
@@ -19,21 +21,17 @@ log.disabled = True
 
 from sqlite_db import order
 
-replica_url = str(sys.argv[3])
-catalog_url = str(sys.argv[4])
-
-##root 
 @app.route('/')
 @app.route('/index')
 @app.route('/home')
 def index():
-	return "Hi! You have reached the order server. Replica is %s Catalog is %s"%(replica_url, catalog_url)
+    return {"response": "Hi! You have reached the order server."}
 
 @app.route('/orders')
 def orders():
-	order_db = order()
-	orders = order_db.get_orders()
-	return get_success_response('order', orders)
+    order_db = order()
+    orders = order_db.get_orders()
+    return get_success_response('order', orders)
 
 @app.route('/buy/<item_id>', methods = ['GET'])
 def buy(item_id = None):
@@ -42,7 +40,7 @@ def buy(item_id = None):
         get_failed_response(message = "Item id has to be passed for buying.", status_code = 400)
     order_db = order()
     
-	##Check wether the item id is there in the catalog server
+    ##Check wether the item id is there in the catalog server
     r = requests.get(catalog_url+"/item/%s"%(item_id))
     if r.status_code == 200:
         #get the item 
@@ -54,7 +52,7 @@ def buy(item_id = None):
     else:
         return get_failed_response(message = "Couldn't fetch item status from the catalog server.")
 
-	#If present issue a update request to the catalog server
+    #If present issue a update request to the catalog server
     if item_count>0:
         app.logger.info("Item with id %s present in the catalog server. Going ahead to buy it" % (item_id))
         payload = {"count" : -1}
@@ -64,7 +62,11 @@ def buy(item_id = None):
             return get_failed_response(message = "Failed to update catalog server.")
 
         app.logger.info("Successfully bought the item %s from the catalog server." % (item_id))
+        #propagating update
         order_id = order_db.add_order({'item_id': item_id, 'created':  str(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))})
+        payload_order={"update":{'item_id': item_id, 'created':  str(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))}}
+        app.logger.info("Propagating update to order database")
+        r = requests.put(order_url, data = json.dumps(payload_order))
         return get_success_response("order", output = {'id': order_id}, message = "Item with id %s bought successfully." % (item_id))
     else:
         app.logger.info("The item with id %s is no longer present in the catalog server. Restocking the catalog server" % (item_id))
@@ -74,6 +76,15 @@ def buy(item_id = None):
             app.logger.error("Error: %s" % (str(r.json())))
             return get_failed_response(message = "Failed to update catalog server.")
         return get_failed_response(message = "The item with id %s is no longer present in the catalog server" % (item_id), status_code = 404)
+
+@app.route('/update', methods = ['PUT'])
+def add_to_order():
+    order_db = order()
+    data = json.loads(request.data)
+    order_update=data["update"]
+    order_id = order_db.add_order(order_update)
+    app.logger.info("Propagated update to database")
+    return get_success_response("succesfully updated order id %s" %(order_id))
 
 if __name__=='__main__':
 

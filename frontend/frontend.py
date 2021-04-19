@@ -1,25 +1,41 @@
-from flask import Flask
+from flask import Flask,session
+from flask_session import Session
 import requests 
 from flask import request
 from flask import jsonify
 from response_util import get_failed_response,get_success_response 
 import sys
-sys.path.insert(1, '../')
-# from const import CATALOG_SERVER, ORDER_SERVER
+from flask_caching import Cache
+# sys.path.insert(1, '../')
 import logging
+
 logging.basicConfig(filename="frontend.log", level=logging.DEBUG, format='%(asctime)s %(message)s', filemode='w')
+
+config = {          
+    "CACHE_TYPE": "SimpleCache",
+    "CACHE_DEFAULT_TIMEOUT": 0
+}
 
 app = Flask(__name__)
 
-catalogA_url = str(sys.argv[3])
-catalogB_url = str(sys.argv[4])
-orderA_url = str(sys.argv[5])
-orderB_url = str(sys.argv[6])
+SESSION_TYPE = 'filesystem'
+app.config.from_object(__name__)
+Session(app)
+
+app.config.from_mapping(config)
+cache = Cache(app)
+
+CATALOG_SERVER_A = {"type": "catalog", "url": str(sys.argv[3])}
+CATALOG_SERVER_B = {"type": "catalog", "url": str(sys.argv[4])}
+ORDER_SERVER_A = {"type": "order", "IP": "url": str(sys.argv[5])}
+ORDER_SERVER_B = {"type": "order", "IP": "url": str(sys.argv[6])}
 
 # defining the default page
 @app.route('/', methods=['GET'])
 def hello_world():
-    return "Welcome to Book Store!. %s %s %s %s"%(catalogA_url, catalogB_url, orderA_url, orderB_url)
+    session['load_balancer_catalog'] = 0
+    session['load_balancer_order'] = 0
+    return "Welcome to Book Store!"
 
 # the buy method which makes calls to the order server to buy an item based on provided item id
 @app.route('/buy', methods=['GET'])
@@ -28,8 +44,15 @@ def buy():
         data = request.args
         id=data["id"]
         app.logger.info("Buy method called with the item with id '%s' in catalog server." % (id))
-        results=requests.get("%s:%s/buy/%s"%(ORDER_SERVER["IP"],ORDER_SERVER["PORT"],id))
-        results=results.json()
+        if session['load_balancer_order'] == 0:
+            session['load_balancer_order'] = 1
+            results=requests.get("%s/buy/%s"%(ORDER_SERVER_A["url"],id))
+            results=results.json()
+        else:
+            session['load_balancer_order'] = 0
+            results=requests.get("%s/buy/%s"%(ORDER_SERVER_B["url"],id))
+            results=results.json()
+        cache.clear()
         app.logger.info("Purchase of item '%s' successfull."%(id))
         return results
     except Exception as e:
@@ -39,6 +62,7 @@ def buy():
 
 #the search method makes calls to the catalog server and searches for items based on topic name 
 @app.route('/search',methods=['GET'])
+@cache.cached(key_prefix='topic_lookup')
 def search():
     try:
         if 'topic' in request.args:
@@ -46,8 +70,14 @@ def search():
         else:
             return "Error: No topic field provided. Please specify a topic."
         app.logger.info("Search method called with the topic name '%s' in catalog server." % (topic))
-        results=requests.get("%s:%s/item?topic=%s"%(CATALOG_SERVER["IP"],CATALOG_SERVER["PORT"],topic))
-        app.logger.info("Searching of items with topic '%s' successful."%(topic))
+        if session['load_balancer_catalog'] == 0:
+            session['load_balancer_catalog'] = 1
+            results=requests.get("%s/item?topic=%s"%(CATALOG_SERVER_A["url"],topic))
+            app.logger.info("Searching of items with topic '%s' successful."%(topic))
+        else:
+            session['load_balancer_catalog'] = 0
+            results=requests.get("%s/item?topic=%s"%(CATALOG_SERVER_B["url"],topic))
+            app.logger.info("Searching of items with topic '%s' successful."%(topic))
         results=results.json()
         return results
     except Exception as e:
@@ -57,6 +87,7 @@ def search():
 
 # the lookup method makes calls to the catalog server and searches for the item corresponding to item id
 @app.route('/lookup',methods=['GET'])
+@cache.cached(key_prefix='id_lookup')
 def lookup():
     try:
         if 'id' in request.args:
@@ -64,8 +95,14 @@ def lookup():
         else:
             return "Error: No id field provided. Please specify an id."
         app.logger.info("Lookup method called with the id '%s' in catalog server." % (id))
-        results=requests.get("%s:%s/item/%s"%(CATALOG_SERVER["IP"],CATALOG_SERVER["PORT"],id))
-        results=results.json()
+        if session['load_balancer_catalog'] == 0:
+            session['load_balancer_catalog'] = 1
+            results=requests.get("%s/item/%s"%(CATALOG_SERVER_A["url"],id))
+            results=results.json()
+        else:
+            session['load_balancer_catalog'] = 0
+            results=requests.get("%s/item/%s"%(CATALOG_SERVER_B["url"],id))
+            results=results.json()
         app.logger.info("Looking Up of item with id '%s' successful."%(id))
         return results
         
