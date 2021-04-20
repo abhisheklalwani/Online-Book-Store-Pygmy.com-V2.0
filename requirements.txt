@@ -1,4 +1,0 @@
-flask
-sqlite3
-pydantic
-python-dotenv
