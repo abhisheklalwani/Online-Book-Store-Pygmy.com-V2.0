@@ -7,12 +7,12 @@ from datetime import datetime
 import sys
 sys.path.insert(1, '../')
 import logging
-logging.basicConfig(filename="order.log", level=logging.DEBUG, format='%(asctime)s %(message)s %(threadName)s')
+logging.basicConfig(filename=str(sys.argv[3])+".log", level=logging.DEBUG, format='%(asctime)s %(message)s %(threadName)s')
 
 # order 1 contacts catalog 1
 
-catalog_url = str(sys.argv[4])
-order_url= str(sys.argv[3])
+catalog_url = str(sys.argv[5])
+order_url= str(sys.argv[4])
 
 app = Flask(__name__)
 # app.config.from_object(Config)

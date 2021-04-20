@@ -8,9 +8,9 @@ import requests
 import sys
 sys.path.insert(1, '../')
 
-catalog_url = str(sys.argv[3])
+catalog_url = str(sys.argv[4])
 
-logging.basicConfig(filename="catalog.log",level=logging.DEBUG,
+logging.basicConfig(filename=str(sys.argv[3])+".log",level=logging.DEBUG,
                     format='%(asctime)s %(message)s')
 # logger=logging.getLogger()
 log = logging.getLogger('werkzeug')

@@ -1,6 +1,18 @@
 myip="$(dig +short myip.opendns.com @resolver1.opendns.com)"
 source env.cfg
 
+get_log_files()
+{ 
+	if [[ $2 == $myip ]]; then
+		sudo docker cp $1:/app/$1.log .
+	else
+		ip=$2
+		ssh -i ${pem_file} ubuntu@${ip} sudo docker cp $1:/app/$1.log .
+		scp -i ${pem_file} ubuntu@${ip}:$1.log .
+	fi
+
+}
+
 deploy_server()
 {
 	run_server_file=$3
@@ -19,22 +31,20 @@ deploy_server()
 	fi
 
 }
-deploy_server order ${orderA_ip} run_orderA_server.sh
-deploy_server order ${orderB_ip} run_orderB_server.sh
-deploy_server catalog ${catalogA_ip} run_catalogA_server.sh
-deploy_server catalog ${catalogB_ip} run_catalogB_server.sh
+deploy_server orderA ${orderA_ip} run_orderA_server.sh
+deploy_server orderB ${orderB_ip} run_orderB_server.sh
+deploy_server catalogA ${catalogA_ip} run_catalogA_server.sh
+deploy_server catalogB ${catalogB_ip} run_catalogB_server.sh
 deploy_server frontend ${frontend_ip} run_frontend_server.sh
-#Deploying the orderA server
 
-string='My long string'
-#if [[ $orderA_ip == $myip ]]; then
-#	  echo "It's there!"
-#else
-#	echo "Not there"
-#	ip=${orderA_ip}
-#	run_server_file="run_orderA_server.sh"
-#	scp -i ${pem_file} env.cfg ubuntu@${ip}:/home/ubuntu/
-#	scp -i ${pem_file} run_orderA_server.sh ubuntu@${ip}:/home/ubuntu/
-#	ssh -i ${pem_file} ubuntu@${ip} chmod +x ${run_server_file} 
-#	ssh -i ${pem_file} ubuntu@${ip} . ./${run_server_file}
-#fi
+echo "###### Starting the Client Process. ######"
+sleep 2
+python client.py "http://${frontend_ip}" ${frontend_port} 5
+
+get_log_files orderA ${orderA_ip}
+get_log_files orderB ${orderB_ip}
+get_log_files catalogA ${catalogA_ip}
+get_log_files catalogB ${catalogB_ip}
+get_log_files frontend ${frontend_ip}
+
+

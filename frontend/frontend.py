@@ -9,7 +9,7 @@ from flask_caching import Cache
 # sys.path.insert(1, '../')
 import logging
 
-logging.basicConfig(filename="frontend.log", level=logging.DEBUG, format='%(asctime)s %(message)s', filemode='w')
+logging.basicConfig(filename=str(sys.argv[3])+".log", level=logging.DEBUG, format='%(asctime)s %(message)s', filemode='w')
 
 config = {          
     "CACHE_TYPE": "SimpleCache",
@@ -25,16 +25,17 @@ Session(app)
 app.config.from_mapping(config)
 cache = Cache(app)
 
-CATALOG_SERVER_A = {"type": "catalog", "url": str(sys.argv[3])}
-CATALOG_SERVER_B = {"type": "catalog", "url": str(sys.argv[4])}
-ORDER_SERVER_A = {"type": "order", "url": str(sys.argv[5])}
-ORDER_SERVER_B = {"type": "order", "url": str(sys.argv[6])}
+CATALOG_SERVER_A = {"type": "catalog", "url": str(sys.argv[4])}
+CATALOG_SERVER_B = {"type": "catalog", "url": str(sys.argv[5])}
+ORDER_SERVER_A = {"type": "order", "url": str(sys.argv[6])}
+ORDER_SERVER_B = {"type": "order", "url": str(sys.argv[7])}
+
+def cache_key():
+    return request.args
 
 # defining the default page
 @app.route('/', methods=['GET'])
 def hello_world():
-    session['load_balancer_catalog'] = 0
-    session['load_balancer_order'] = 0
     return "Welcome to Book Store!"
 
 # the buy method which makes calls to the order server to buy an item based on provided item id
@@ -44,7 +45,7 @@ def buy():
         data = request.args
         id=data["id"]
         app.logger.info("Buy method called with the item with id '%s' in catalog server." % (id))
-        if session['load_balancer_order'] == 0:
+        if session.get('load_balancer_order') != None and session['load_balancer_order'] == 0:
             session['load_balancer_order'] = 1
             results=requests.get("%s/buy/%s"%(ORDER_SERVER_A["url"],id))
             results=results.json()
@@ -62,18 +63,16 @@ def buy():
 
 #the search method makes calls to the catalog server and searches for items based on topic name 
 @app.route('/search',methods=['GET'])
-@cache.cached(key_prefix='topic_lookup')
+@cache.cached(key_prefix = cache_key)
 def search():
-    app.logger.info("%s,%s,%s,%s"%(CATALOG_SERVER_A["url"], CATALOG_SERVER_B["url"], ORDER_SERVER_A["url"], ORDER_SERVER_B["url"]))
     try:
         if 'topic' in request.args:
             topic=request.args['topic']
         else:
             return "Error: No topic field provided. Please specify a topic."
         app.logger.info("Search method called with the topic name '%s' in catalog server." % (topic))
-        if session['load_balancer_catalog'] == 0:
+        if session.get('load_balancer_catalog') != None and session['load_balancer_catalog'] == 0:
             session['load_balancer_catalog'] = 1
-            app.logger.info("%s/item?topic=%s"%(CATALOG_SERVER_A["url"],topic))
             results=requests.get("%s/item?topic=%s"%(CATALOG_SERVER_A["url"],topic))
             app.logger.info("Searching of items with topic '%s' successful."%(topic))
         else:
@@ -89,7 +88,7 @@ def search():
 
 # the lookup method makes calls to the catalog server and searches for the item corresponding to item id
 @app.route('/lookup',methods=['GET'])
-@cache.cached(key_prefix='id_lookup')
+@cache.cached(key_prefix = cache_key)
 def lookup():
     try:
         if 'id' in request.args:
@@ -97,7 +96,7 @@ def lookup():
         else:
             return "Error: No id field provided. Please specify an id."
         app.logger.info("Lookup method called with the id '%s' in catalog server." % (id))
-        if session['load_balancer_catalog'] == 0:
+        if session.get('load_balancer_catalog') != None and session['load_balancer_catalog'] == 0:
             session['load_balancer_catalog'] = 1
             results=requests.get("%s/item/%s"%(CATALOG_SERVER_A["url"],id))
             results=results.json()
