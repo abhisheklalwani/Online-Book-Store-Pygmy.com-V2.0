@@ -1,7 +1,7 @@
 cd order/
 docker build -t himgupta1996/pygmy:order .
 docker push himgupta1996/pygmy:order
-cd ../Catalog/
+cd ../catalog/
 docker build -t himgupta1996/pygmy:catalog .
 docker push himgupta1996/pygmy:catalog
 cd ../frontend/

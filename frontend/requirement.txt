@@ -1,3 +1,6 @@
 Flask==1.1.2
 requests==2.25.1
 pydantic==1.8.1
+Flask-Cache==0.13.1
+Flask-Caching==1.10.1
+Flask-Session==0.3.2

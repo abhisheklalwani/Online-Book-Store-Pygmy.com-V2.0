@@ -6,4 +6,4 @@ echo port=${orderA_port} >> orderA-env.txt
 echo replica="http://${orderB_ip}:${orderB_port}" >> orderA-env.txt
 echo catalog="http://${catalogA_ip}:${catalogA_port}" >> orderA-env.txt
 sleep 2
-sudo docker run --env-file orderA-env.txt -d -p ${orderA_port}:${orderA_port} himgupta1996/pygmy:order
+sudo docker run --name orderA --env-file orderA-env.txt -d -p ${orderA_port}:${orderA_port} himgupta1996/pygmy:order

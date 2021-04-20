@@ -27,8 +27,8 @@ cache = Cache(app)
 
 CATALOG_SERVER_A = {"type": "catalog", "url": str(sys.argv[3])}
 CATALOG_SERVER_B = {"type": "catalog", "url": str(sys.argv[4])}
-ORDER_SERVER_A = {"type": "order", "IP": "url": str(sys.argv[5])}
-ORDER_SERVER_B = {"type": "order", "IP": "url": str(sys.argv[6])}
+ORDER_SERVER_A = {"type": "order", "url": str(sys.argv[5])}
+ORDER_SERVER_B = {"type": "order", "url": str(sys.argv[6])}
 
 # defining the default page
 @app.route('/', methods=['GET'])
@@ -64,6 +64,7 @@ def buy():
 @app.route('/search',methods=['GET'])
 @cache.cached(key_prefix='topic_lookup')
 def search():
+    app.logger.info("%s,%s,%s,%s"%(CATALOG_SERVER_A["url"], CATALOG_SERVER_B["url"], ORDER_SERVER_A["url"], ORDER_SERVER_B["url"]))
     try:
         if 'topic' in request.args:
             topic=request.args['topic']
@@ -72,6 +73,7 @@ def search():
         app.logger.info("Search method called with the topic name '%s' in catalog server." % (topic))
         if session['load_balancer_catalog'] == 0:
             session['load_balancer_catalog'] = 1
+            app.logger.info("%s/item?topic=%s"%(CATALOG_SERVER_A["url"],topic))
             results=requests.get("%s/item?topic=%s"%(CATALOG_SERVER_A["url"],topic))
             app.logger.info("Searching of items with topic '%s' successful."%(topic))
         else:
