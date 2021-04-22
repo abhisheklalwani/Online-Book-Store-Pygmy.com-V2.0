@@ -16,7 +16,7 @@ Installing Python and required dependencies:
 1. sudo apt-get update
 2. sudo apt-get install python3
 3. sudo apt-get install python3-pip
-4. Go to the main folder run the command: pip3 install requirement.txt
+4. Go to the main folder `pygmy` and run the command: pip3 install requirement.txt
 
 Installing Docker
 1. Follow the steps specified in the link: https://docs.docker.com/engine/installation/
