@@ -8,7 +8,7 @@ Kunal Chakrabarty (kchakrabarty@umass.edu) <br>
 
 # System requirement
 
-Local VM (Linux), Local VM OS(ubuntu), Ec2 servers (Linux)  
+Local VM (Linux), Local VM OS(ubuntu), Ec2 servers (Linux
 
 # Installing Required Packages  
 
