@@ -10,7 +10,7 @@ from flask_caching import Cache
 import logging
 import threading
 
-logging.basicConfig(filename="frontend.log", level=logging.DEBUG, format='%(asctime)s %(message)s %(threadName)s', filemode='w')
+logging.basicConfig(filename=str(sys.argv[3]), level=logging.DEBUG, format='%(asctime)s %(message)s %(threadName)s', filemode='w')
 
 config = {          
     "CACHE_TYPE": "SimpleCache",
