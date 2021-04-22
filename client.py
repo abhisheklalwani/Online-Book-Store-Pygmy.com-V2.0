@@ -114,7 +114,7 @@ def order_buy(item_id):
 
 ##call to the frontend to search a particular topic
 def frontend_search(topic):
-    logger.info("Searching catalog server for the topic '%s'" % (topic_to_search))
+    logger.info("Searching catalog server for the topic '%s'" % (topic))
     try:
         r = requests.get("%s:%s/search?topic=%s"%(FRONTEND_SERVER["IP"],FRONTEND_SERVER["PORT"],topic))
         status_code = r.status_code
