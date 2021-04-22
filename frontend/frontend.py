@@ -57,7 +57,7 @@ def buy():
             results=requests.get("%s/buy/%s"%(ORDER_SERVER_A["url"],id))
             results=results.json()
         else:
-            app.config['load_balancer_order'] = 1
+            app.config['load_balancer_order'] = 0
             order_lock.release()
             results=requests.get("%s/buy/%s"%(ORDER_SERVER_B["url"],id))
             results=results.json()
