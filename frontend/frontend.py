@@ -10,7 +10,7 @@ from flask_caching import Cache
 import logging
 import threading
 
-logging.basicConfig(filename=str(sys.argv[3]), level=logging.DEBUG, format='%(asctime)s %(message)s %(threadName)s', filemode='w')
+logging.basicConfig(filename=str(sys.argv[3])+".log", level=logging.DEBUG, format='%(asctime)s %(message)s %(threadName)s', filemode='w')
 
 config = {          
     "CACHE_TYPE": "SimpleCache",
@@ -26,7 +26,7 @@ Session(app)
 app.config.from_mapping(config)
 cache = Cache(app)
 app.config['load_balancer_catalog'] = 0
-app.config['order_balancer_catalog'] = 0
+app.config['load_balancer_order'] = 0
 order_lock = threading.Lock()
 catalog_lock = threading.Lock()
 
