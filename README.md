@@ -10,7 +10,7 @@ Kunal Chakrabarty (kchakrabarty@umass.edu) <br>
 
 Local VM (Linux), Local VM OS(ubuntu), Ec2 servers (Linux)  
 
-#Installing Required Packages  
+# Installing Required Packages  
 
 Installing Python and required dependencies:
 1. sudo apt-get update
