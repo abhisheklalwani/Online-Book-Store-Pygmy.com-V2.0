@@ -8,8 +8,9 @@ import sys
 from flask_caching import Cache
 # sys.path.insert(1, '../')
 import logging
+import threading
 
-logging.basicConfig(filename=str(sys.argv[3])+".log", level=logging.DEBUG, format='%(asctime)s %(message)s', filemode='w')
+logging.basicConfig(filename=str(sys.argv[3])+".log", level=logging.DEBUG, format='%(asctime)s %(message)s %(threadName)s', filemode='w')
 
 config = {          
     "CACHE_TYPE": "SimpleCache",
@@ -24,6 +25,10 @@ Session(app)
 
 app.config.from_mapping(config)
 cache = Cache(app)
+app.config['load_balancer_catalog'] = 0
+app.config['load_balancer_order'] = 0
+order_lock = threading.Lock()
+catalog_lock = threading.Lock()
 
 CATALOG_SERVER_A = {"type": "catalog", "url": str(sys.argv[4])}
 CATALOG_SERVER_B = {"type": "catalog", "url": str(sys.argv[5])}
@@ -45,12 +50,15 @@ def buy():
         data = request.args
         id=data["id"]
         app.logger.info("Buy method called with the item with id '%s' in catalog server." % (id))
-        if session.get('load_balancer_order') != None and session['load_balancer_order'] == 0:
-            session['load_balancer_order'] = 1
+        order_lock.acquire()
+        if app.config['load_balancer_order'] != None and app.config['load_balancer_order'] == 0:
+            app.config['load_balancer_order'] = 1
+            order_lock.release()
             results=requests.get("%s/buy/%s"%(ORDER_SERVER_A["url"],id))
             results=results.json()
         else:
-            session['load_balancer_order'] = 0
+            app.config['load_balancer_order'] = 1
+            order_lock.release()
             results=requests.get("%s/buy/%s"%(ORDER_SERVER_B["url"],id))
             results=results.json()
         cache.clear()
@@ -71,12 +79,15 @@ def search():
         else:
             return "Error: No topic field provided. Please specify a topic."
         app.logger.info("Search method called with the topic name '%s' in catalog server." % (topic))
-        if session.get('load_balancer_catalog') != None and session['load_balancer_catalog'] == 0:
-            session['load_balancer_catalog'] = 1
+        catalog_lock.acquire()
+        if app.config['load_balancer_catalog'] != None and app.config['load_balancer_catalog'] == 0:
+            app.config['load_balancer_catalog'] = 1
+            catalog_lock.release()
             results=requests.get("%s/item?topic=%s"%(CATALOG_SERVER_A["url"],topic))
             app.logger.info("Searching of items with topic '%s' successful."%(topic))
         else:
-            session['load_balancer_catalog'] = 0
+            app.config['load_balancer_catalog'] = 0
+            catalog_lock.release()
             results=requests.get("%s/item?topic=%s"%(CATALOG_SERVER_B["url"],topic))
             app.logger.info("Searching of items with topic '%s' successful."%(topic))
         results=results.json()
@@ -96,12 +107,15 @@ def lookup():
         else:
             return "Error: No id field provided. Please specify an id."
         app.logger.info("Lookup method called with the id '%s' in catalog server." % (id))
-        if session.get('load_balancer_catalog') != None and session['load_balancer_catalog'] == 0:
-            session['load_balancer_catalog'] = 1
+        catalog_lock.acquire()
+        if app.config['load_balancer_catalog'] != None and app.config['load_balancer_catalog'] == 0:
+            app.config['load_balancer_catalog'] = 1
+            catalog_lock.release()
             results=requests.get("%s/item/%s"%(CATALOG_SERVER_A["url"],id))
             results=results.json()
         else:
-            session['load_balancer_catalog'] = 0
+            app.config['load_balancer_catalog'] = 0
+            catalog_lock.release()
             results=requests.get("%s/item/%s"%(CATALOG_SERVER_B["url"],id))
             results=results.json()
         app.logger.info("Looking Up of item with id '%s' successful."%(id))

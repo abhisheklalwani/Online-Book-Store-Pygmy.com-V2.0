@@ -14,6 +14,7 @@ import requests
 import json
 import random
 import logging
+import multiprocessing
 
 FRONTEND_SERVER = {'IP': sys.argv[1], 'PORT': sys.argv[2]}
 
@@ -113,7 +114,7 @@ def order_buy(item_id):
 
 ##call to the frontend to search a particular topic
 def frontend_search(topic):
-    logger.info("Searching catalog server for the topic '%s'" % (topic_to_search))
+    logger.info("Searching catalog server for the topic '%s'" % (topic))
     try:
         r = requests.get("%s:%s/search?topic=%s"%(FRONTEND_SERVER["IP"],FRONTEND_SERVER["PORT"],topic))
         status_code = r.status_code
@@ -126,31 +127,52 @@ def frontend_search(topic):
         logger.info("Failed to connect to frontened server. Error: %s" % (str(e)))
         raise
 
-#Default value of n=5
-n = int(sys.argv[3])
-# if args['times']:
-#     n = int(args['times'])
-print("Running %s requests for lookup, search and buy"%(n))
-print("Check out the ./client.log for more pass/fail logs.")
-for i in range(n):
-    ##selecting a random topic to search
-    index = random.randint(0,len(BOOK_TOPICS)-1)
-    topic_to_search = BOOK_TOPICS[index]
+def client_call(client_id):
+    logger.info('Calling client with id = %s'%client_id)
+    for i in range(3):
+        ##selecting a random topic to search
+        index = random.randint(0,len(BOOK_TOPICS)-1)
+        topic_to_search = BOOK_TOPICS[index]
 
-    #getting all the items with a particular topic
-    items = frontend_search(topic_to_search)
+        #getting all the items with a particular topic
+        items = frontend_search(topic_to_search)
 
-    ##taking a random item from the list and checking the presence of the same in the server
-    item_to_lookup = items[random.randint(0,len(items)-1)]
-    id_ = item_to_lookup['id']
-    item_present = frontend_lookup(id_)
+        ##taking a random item from the list and checking the presence of the same in the server
+        item_to_lookup = items[random.randint(0,len(items)-1)]
+        id_ = item_to_lookup['id']
+        item_present = frontend_lookup(id_)
 
-    ##if item is present, call the order server to buy the particular item
-    if item_present:
-        item_bought=order_buy(id_)
-    else:
-        logger.info("Item with id '%s' got finished in the server." % (id_))
-    logger.info("---------------------------------------------------------")
-    time.sleep(2)
-print("Process Complete.")
+        ##if item is present, call the order server to buy the particular item
+        if item_present:
+            item_bought=order_buy(id_)
+        else:
+            logger.info("Item with id '%s' got finished in the server." % (id_))
+        logger.info("---------------------------------------------------------")
+        time.sleep(2)
+
+if __name__ == "__main__":
+    #Default value of n=5
+    n = int(sys.argv[3])
+    print("Setting up %s clients for testing the systems. They will call lookup, search and buy methods of the frontend server thrice."%(n))
+    print("Check out the ./client.log for more pass/fail logs.")
+
+    p1 = multiprocessing.Process(target=client_call, args=(1, ))
+    p2 = multiprocessing.Process(target=client_call, args=(2, ))
+    p3 = multiprocessing.Process(target=client_call, args=(3, ))
+    p4 = multiprocessing.Process(target=client_call, args=(4, ))
+    p5 = multiprocessing.Process(target=client_call, args=(5, ))
+
+    p1.start()
+    p2.start()
+    p3.start()
+    p4.start()
+    p5.start()
+
+    p1.join()
+    p2.join()
+    p3.join()
+    p4.join()
+    p5.join()
+
+    print("Process Complete.")
 
