@@ -8,19 +8,28 @@ Kunal Chakrabarty (kchakrabarty@umass.edu) <br>
 
 # System requirement
 
-Local machine (Windows),  
-Ec2 servers (Linux)  
-Python module dependencies that we used: Details in `requirements.txt`
+Local VM (Linux), Local VM OS(ubuntu), Ec2 servers (Linux)  
 
-# Source File Descriptions
+#Installing Required Packages  
+
+Installing Python and required dependencies:
+1. sudo apt-get update
+2. sudo apt-get install python3
+3. sudo apt-get install python3-pip
+4. Go to the main folder run the command: pip3 install requirement.txt
+
+Installing Docker
+1. Follow the steps specified in the link: https://docs.docker.com/engine/installation/
+
+# Important Source File Descriptions
 1. `catalog/catalog.py` implements the catalog server with the relevant GET and PUT methods.
 2. `frontend/frontend.py` implements the front end server with the buy, search and lookup methods.
 3. `order/order.py` implements the order server with the buy method. 
 4. `Docs` contains the design documentation and the test case documentation.
 5. `requirements.txt` contains the python libraries required.
-6. `runme.py` is a single script to automatically deploy servers and run frontend APIs.
-7. `const.py` contains information about the type, IP and Port for all the servers. Change the IP and port of the servers as per requirement.
-
+6. `env.cfg` contains the `PUBLIC_IP` and `PORT` of the machines where the catalog, order and frontend server has to be run. It also contains the reference to the `pem` file that is required to ssh, and scp to the remote machines. Modify the file according to your requirements.
+7. `runme.sh` is a single script to automatically deploy catalog, order and frontend docker servers on specified machines in `env.cfg`, run the client.py and get the logs from all the servers.
+8. `const.py` contains information about the books in the catalog server.
 
 Please find the instructions below for testing the implementation.
 
@@ -28,27 +37,19 @@ Please find the instructions below for testing the implementation.
 
 ### To run the server locally
 
-1. Define the ip and ports of order, catalog and front end server by editing the `const.py` file. For running locally make the IPs for the server as `http://12.0.0.1`.
-2. Run `python runme.py -n <number of iterations>`. For example, if you want the service to run for 20 iterations (where each iteration contains one frontend API of each search,lookup and buy) you use `python client.py -n 20`. Default value is 5 iterations. Please note that the servers keep running after the completion of all iterations and have to be stopped manually by the user.
-3. You can observe the results of this run in the log files. `client.log` will contain the logs of `runme.py` script. For server specific logs, you can refer to the logs inside the specific server folders named order, catalog and frontend.
+1. Define the ip and ports of order, catalog and front end server by editing the `env.cfg` file. For running locally make the IPs for the server as `http://<public_ip_of _local_vm>`.
+2. Now, on your local machine, run the `runme.sh` file which deploy all the dockers and then trigger the client.py for starting the traffic. USAGE: `. ./runme.sh`.
+3. You can observe the results of this run in different log files that should be accumulated under the folder `logs`. `client.log` in the main folder will contain the logs of `client.py` script.
 
 ### To run servers remotely 
 
-1. Use the custom public AMI: `ami-07f5352ed5fd844e3` to deploy instances. The image contains all the library and source code for the respective flask servers to run. If you want to use another image, you have to follow the commands written in the `remote setup` section.
-2. Create EC2 instances with key pair value, and get the private .pem file.
+1. Deploy an Ubuntu VM. We have used the AMI: `ami-013f17f36f8b1fefb` to deploy instances and test our code. You can use any other Ubuntu image as per your convenience. Make sure to install docker engine on the instances. You can follow the link: https://docs.docker.com/engine/installation/ for the same.
+2. Get the private .pem file which will be used to coomunicate to the remote servers by the local machine.
 3. Edit the security group to ensure that the ports required by the peers to communicate are open.
 3. Set up password-less ssh from the local machine to the ec2 servers by running the following command from the local terminal:
-    `ssh -i <pem_file_path> ec2-user@<ec2_public_ip>` with the private pem file and the public IP address of the EC2 instance that has been set up. (This will add the ec2 server to the known_host file so that you can ssh from the script without the need of a password).
-4. Copy the public IP of the instances and add them to the `const.py` file. Change the port IDs of the servers as pleased.
-5. Now, on your local machine, run the `runme.py` file which will ssh on the remote machine and start the flask servers. It will then trigger frontend APIs to test the functionalities. USAGE: `python runme.py -pem <pem file used to ssh to all the machines> -n <number of iterations>`. The argument -pem is compulsory in the case the servers are running in remote environment/machines.
-6. You can observe the results of this run in different log files. `client.log` will contain the logs of `runme.py` script. For server specific logs, you can refer to the logs inside the specific server folders in remote machines. The location for the same will be: `/home/ec2-user/src/<servername>/<servername>.log`
+    `ssh -i <pem_file_path> ubuntu@<ec2_public_ip>` with the private pem file and the public IP address of the EC2 instance that has been set up. (This will add the ec2 server to the known_host file so that you can ssh from the script without the need of a password). Please note that ubuntu is default username of an AWS Ubuntu VM. You can alter it according to your need.
+4. Define the ip and ports of order, catalog and front end server by editing the `env.cfg` file. Change the port IDs of the servers as pleased. Also provide the path of the pem file. Instructions to change the file is specified in the same.
+5. Now, on your local machine, run the `runme.sh` file which deploy all the dockers and then trigger the client.py for starting the traffic. USAGE: `. ./runme.sh`.
+6. You can observe the results of this run in different log files that should be accumulated under the folder `logs`. `client.log` in the main folder will contain the logs of `client.py` script.
 
-# Remote setup
 
-sudo yum install python3  
-curl -O https://bootstrap.pypa.io/get-pip.py  
-python3 get-pip.py --user  
-pip install flask  
-pip install gunicorn  
-gunicorn -b 0.0.0.0:8010 frontend:app  
-pip install requests  
