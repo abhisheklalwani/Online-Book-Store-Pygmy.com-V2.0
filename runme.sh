@@ -1,15 +1,15 @@
-sudo su
+
 myip="$(dig +short myip.opendns.com @resolver1.opendns.com)"
 source env.cfg
 
 get_log_files()
 { 
 	if [[ $2 == $myip ]]; then
-		sudo docker cp $1:/app/$1.log .
+		sudo docker cp $1:/app/$1.log logs/
 	else
 		ip=$2
 		ssh -i ${pem_file} ubuntu@${ip} sudo docker cp $1:/app/$1.log .
-		scp -i ${pem_file} ubuntu@${ip}:$1.log .
+		scp -i ${pem_file} ubuntu@${ip}:$1.log logs/
 	fi
 
 }
