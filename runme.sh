@@ -1,3 +1,4 @@
+sudo su
 myip="$(dig +short myip.opendns.com @resolver1.opendns.com)"
 source env.cfg
 
