@@ -110,6 +110,7 @@ def item(id_ = None):
             app.logger.info("Lookup Successful")
         con.commit()
         con.close()
+        cur.close()
         return get_success_response('item',response,status_code = 200)
     except Exception as e:
         return get_failed_response(message=str(e))
@@ -156,6 +157,7 @@ def update_by_id(id_):
             r = requests.put(catalog_url+"/item/propagate/%s"%(item_id), data = json.dumps(payload))
         con.commit()
         con.close()
+        cur.close()
         app.logger.info('Catalog database update successful')
         return get_success_response('item',{}, status_code=201)
     
@@ -195,6 +197,7 @@ def propagate_by_id(id_):
            
         con.commit()
         con.close()
+        cur.close()
         app.logger.info('Catalog database update successful')
         return get_success_response('item',{}, status_code=201)
     
