@@ -87,7 +87,7 @@ There are 4 cases which are overall covered here -
 @app.route("/item",methods = ['GET'])
 def item(id_ = None):
     try:
-        con = sqlite3.connect('catalog.db')
+        con = sqlite3.connect('catalog.db',timeout=30.0)
         con.row_factory = dict_factory
         cur = con.cursor()
         sql_query = ""
@@ -118,7 +118,7 @@ def item(id_ = None):
 @app.route("/item/<id_>",methods = ['PUT'])
 def update_by_id(id_):
     try:
-        con = sqlite3.connect('catalog.db')
+        con = sqlite3.connect('catalog.db',timeout=30.0)
         con.row_factory = dict_factory
         cur = con.cursor()
         sql_query ="select * from catalog where id = ?;"
@@ -165,7 +165,7 @@ def update_by_id(id_):
 @app.route("/item/propagate/<id_>",methods = ['PUT'])
 def propagate_by_id(id_):
     try:
-        con = sqlite3.connect('catalog.db')
+        con = sqlite3.connect('catalog.db',timeout=30.0)
         con.row_factory = dict_factory
         cur = con.cursor()
         sql_query ="select * from catalog where id = ?;"
