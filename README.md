@@ -1,6 +1,6 @@
 # Book-Store
 
-This repository contains implementation of the Lab 2 Project of COMPSCI 677 course at UMass Amherst. <br>
+This repository contains implementation of the Lab 3 Project of COMPSCI 677 course at UMass Amherst. <br>
 Contributors - <br>
 Abhishek Lalwani (alalwani@umass.edu) <br>
 Himanshu Gupta (hgupta@umass.edu) <br>
