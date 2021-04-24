@@ -30,6 +30,7 @@ Installing Docker
 6. `env.cfg` contains the `PUBLIC_IP` and `PORT` of the machines where the catalog, order and frontend server has to be run. It also contains the reference to the `pem` file that is required to ssh, and scp to the remote machines. Modify the file according to your requirements.
 7. `runme.sh` is a single script to automatically deploy catalog, order and frontend docker servers on specified machines in `env.cfg`, run the client.py and get the logs from all the servers.
 8. `const.py` contains information about the books in the catalog server.
+9. `Docs` contains the design documentation 
 
 Please find the instructions below for testing the implementation.
 
@@ -37,7 +38,7 @@ Please find the instructions below for testing the implementation.
 
 ### To run the server locally
 
-1. Define the ip and ports of order, catalog and front end server by editing the `env.cfg` file. For running locally make the IPs for the server as `http://<public_ip_of _local_vm>`.
+1. Define the ip and ports of order, catalog and front end server by editing the `env.cfg` file. For running locally make the IPs for the server as `http://<public_ip_of_local_vm>`.
 2. Now, on your local machine, run the `runme.sh` file which deploy all the dockers and then trigger the client.py for starting the traffic. USAGE: `. ./runme.sh`.
 3. You can observe the results of this run in different log files that should be accumulated under the folder `logs`. `client.log` in the main folder will contain the logs of `client.py` script.
 
