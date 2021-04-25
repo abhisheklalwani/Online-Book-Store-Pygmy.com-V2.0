@@ -19,11 +19,11 @@ log.disabled = True
 app = Flask(__name__)
 
 class Book(BaseModel):
-        id_:int = None    
-        title:str = None
-        count:int = None
-        cost:int = None
-        topic:str = None
+    id_:int = None
+    title:str = None
+    count:int = None
+    cost:int = None
+    topic:str = None
         
 def dict_factory(cursor, row):
     d = {}
