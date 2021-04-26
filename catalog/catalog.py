@@ -31,29 +31,73 @@ def dict_factory(cursor, row):
         d[col[0]] = row[idx]
     return d
 
-con = sqlite3.connect('catalog.db')
-cur = con.cursor();
-cur.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='catalog';")
-response = cur.fetchone()
-if response == None:
+# con = sqlite3.connect('catalog.db')
+# cur = con.cursor();
+# cur.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='catalog';")
+# response = cur.fetchone()
+# if response == None:
+#     cur.execute("create table IF NOT EXISTS catalog (id INTEGER PRIMARY KEY,title text,count INTEGER, cost INTEGER, topic text)")
+#     sql_query ="INSERT INTO catalog(id,title,count,cost,topic) VALUES(?,?,?,?,?) "
+#     values_1 = (1, 'How to get a good grade in 677 in 20 minutes a day.', 5, 10, 'distributed systems');
+#     values_2 = (2, 'RPCs for Dummies.', 5, 10, 'distributed systems');
+#     values_3 = (3, 'Xen and the Art of Surviving Graduate School.', 5, 10, 'graduate school');
+#     values_4 = (4, 'Cooking for the Impatient Graduate Student.', 5, 10, 'graduate school');
+#     values_5 = (5, 'How to finish Project 3 on time', 5, 10, 'distributed systems');
+#     values_6 = (6, 'Why theory classes are so hard.', 5, 10, 'graduate school');
+#     values_7 = (7, 'Spring in the Pioneer Valley', 5, 10, 'graduate school');
+#     cur.execute(sql_query,values_1)
+#     cur.execute(sql_query,values_2)
+#     cur.execute(sql_query,values_3)
+#     cur.execute(sql_query,values_4)
+#     cur.execute(sql_query,values_5)
+#     cur.execute(sql_query,values_6)
+#     cur.execute(sql_query,values_7)
+# con.commit()
+# con.close()
+
+try:
+    app.logger.info("restarting after a crash")
+    r = requests.get(catalog_url+"/item")
+    r=r.json()
+    app.logger.info("got request")
+    con = sqlite3.connect('catalog.db')
+    cur = con.cursor()
+    cur.execute("drop table if exists catalog ;")
+    app.logger.info("dropped table")
     cur.execute("create table IF NOT EXISTS catalog (id INTEGER PRIMARY KEY,title text,count INTEGER, cost INTEGER, topic text)")
     sql_query ="INSERT INTO catalog(id,title,count,cost,topic) VALUES(?,?,?,?,?) "
-    values_1 = (1, 'How to get a good grade in 677 in 20 minutes a day.', 5, 10, 'distributed systems');
-    values_2 = (2, 'RPCs for Dummies.', 5, 10, 'distributed systems');
-    values_3 = (3, 'Xen and the Art of Surviving Graduate School.', 5, 10, 'graduate school');
-    values_4 = (4, 'Cooking for the Impatient Graduate Student.', 5, 10, 'graduate school');
-    values_5 = (5, 'How to finish Project 3 on time', 5, 10, 'distributed systems');
-    values_6 = (6, 'Why theory classes are so hard.', 5, 10, 'graduate school');
-    values_7 = (7, 'Spring in the Pioneer Valley', 5, 10, 'graduate school');
-    cur.execute(sql_query,values_1)
-    cur.execute(sql_query,values_2)
-    cur.execute(sql_query,values_3)
-    cur.execute(sql_query,values_4)
-    cur.execute(sql_query,values_5)
-    cur.execute(sql_query,values_6)
-    cur.execute(sql_query,values_7)
-con.commit()
-con.close()
+    values=[]
+    for d in r["item"]:
+        #looping over dictionaries
+        values.append((d["id"],d["title"],d["count"],d["cost"],d["topic"]))
+    for i in range(len(values)):
+        cur.execute(sql_query,values[i])
+    con.commit()
+    con.close()
+except:
+    con = sqlite3.connect('catalog.db')
+    cur = con.cursor();
+    cur.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='catalog';")
+    response = cur.fetchone()
+    if response == None:
+        cur.execute("create table IF NOT EXISTS catalog (id INTEGER PRIMARY KEY,title text,count INTEGER, cost INTEGER, topic text)")
+        sql_query ="INSERT INTO catalog(id,title,count,cost,topic) VALUES(?,?,?,?,?) "
+        values_1 = (1, 'How to get a good grade in 677 in 20 minutes a day.', 5, 10, 'distributed systems');
+        values_2 = (2, 'RPCs for Dummies.', 5, 10, 'distributed systems');
+        values_3 = (3, 'Xen and the Art of Surviving Graduate School.', 5, 10, 'graduate school');
+        values_4 = (4, 'Cooking for the Impatient Graduate Student.', 5, 10, 'graduate school');
+        values_5 = (5, 'How to finish Project 3 on time', 5, 10, 'distributed systems');
+        values_6 = (6, 'Why theory classes are so hard.', 5, 10, 'graduate school');
+        values_7 = (7, 'Spring in the Pioneer Valley', 5, 10, 'graduate school');
+        cur.execute(sql_query,values_1)
+        cur.execute(sql_query,values_2)
+        cur.execute(sql_query,values_3)
+        cur.execute(sql_query,values_4)
+        cur.execute(sql_query,values_5)
+        cur.execute(sql_query,values_6)
+        cur.execute(sql_query,values_7)
+    con.commit()
+    con.close()
 
 @app.route('/')
 def catalog():
