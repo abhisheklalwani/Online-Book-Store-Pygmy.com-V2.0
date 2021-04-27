@@ -128,7 +128,7 @@ def frontend_search(topic):
         raise
 
 def client_call(client_id):
-    logger.info('Calling client with id = %s'%client_id)
+    logger.info('Calling client with client_id = %s'%client_id)
     for i in range(1):
         ##selecting a random topic to search
         index = random.randint(0,len(BOOK_TOPICS)-1)
@@ -156,23 +156,14 @@ if __name__ == "__main__":
     print("Setting up %s clients for testing the systems. They will call lookup, search and buy methods of the frontend server."%(n))
     print("Check out the ./client.log for more pass/fail logs.")
 
-    p1 = multiprocessing.Process(target=client_call, args=(1, ))
-    p2 = multiprocessing.Process(target=client_call, args=(2, ))
-    #p3 = multiprocessing.Process(target=client_call, args=(3, ))
-    #p4 = multiprocessing.Process(target=client_call, args=(4, ))
-    #p5 = multiprocessing.Process(target=client_call, args=(5, ))
-
-    p1.start()
-    p2.start()
-    #p3.start()
-    #p4.start()
-    #p5.start()
-
-    p1.join()
-    p2.join()
-    #p3.join()
-    #p4.join()
-    #p5.join()
+    processes = []
+    
+    for i in range(n):
+        processes.append(multiprocessing.Process(target=client_call, args=(i, )))
+    for process in processes:
+        process.start()
+    for process in processes:
+        process.join()
 
     print("Process Complete.")
 

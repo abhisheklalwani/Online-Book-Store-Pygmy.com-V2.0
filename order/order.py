@@ -20,6 +20,25 @@ log = logging.getLogger('werkzeug')
 log.disabled = True
 
 from sqlite_db import order
+try:
+    app.logger.info("restarting after a crash")
+    order_db = order()
+    r=requests.get(order_url+"/orders")
+    if r.status_code==200:
+        # read from the other order server
+        r=r.json()
+        app.logger.info("reading from database of other order server")
+        order_db.delete_table()
+        app.logger.info("deleting table")
+        order_db = order()
+        new_orders=r["order"]
+        for new_order in new_orders:
+            #looping over all the orders received from other replica
+            app.logger.info("sending to database")
+            order_db.add_order({'item_id': new_order['item_id'], 'created':  new_order['created']})
+except:
+    app.logger.info("Other server could not be contacted")
+
 
 @app.route('/')
 @app.route('/index')

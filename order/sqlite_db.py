@@ -39,3 +39,7 @@ class order:
 	def delete_order_by_id(self, order_id):
 		self.cursor.execute("DELETE from orders WHERE id = ?", (order_id,))
 		self.connection.commit()
+	
+	def delete_table(self):
+		self.cursor.execute("drop table if exists orders ;")
+		self.connection.commit()
