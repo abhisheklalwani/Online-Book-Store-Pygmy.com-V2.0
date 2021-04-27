@@ -179,7 +179,6 @@ def buy():
                     results=results.json()
                 else:
                     raise Exception("Both order servers are down")
-        cache.clear()
         app.logger.info("Purchase of item '%s' successfull."%(id))
         return results
     except requests.exceptions.ConnectionError as e:
@@ -203,7 +202,6 @@ def buy():
 
 #the search method makes calls to the catalog server and searches for items based on topic name 
 @app.route('/search',methods=['GET'])
-@cache.cached(key_prefix = cache_key)
 def search():
     try:
         if 'topic' in request.args:
@@ -265,7 +263,6 @@ def search():
 
 # the lookup method makes calls to the catalog server and searches for the item corresponding to item id
 @app.route('/lookup',methods=['GET'])
-@cache.cached(key_prefix = cache_key)
 def lookup():
     try:
         if 'id' in request.args:
