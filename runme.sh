@@ -2,6 +2,17 @@
 myip="$(dig +short myip.opendns.com @resolver1.opendns.com)"
 source env.cfg
 
+copy_repo()
+{
+	if [[ $2 == $myip ]];
+	then
+		echo "pygmy repo already present locally."
+	else
+		echo "###### Copying the pygmy repo to the machine $2 to run $1 server ######"
+		scp -i ${pem_file} -r ../pygmy ubuntu@${ip}:.
+	fi
+}
+
 get_log_files()
 { 
 	if [[ $2 == $myip ]]; then
@@ -25,13 +36,19 @@ deploy_server()
 		echo "###### Deploying $1 server on the server with public IP: $2 ######"
 		sleep 2
 		ip=$2
-		scp -i ${pem_file} env.cfg ubuntu@${ip}:/home/ubuntu/
-		scp -i ${pem_file} ${run_server_file} ubuntu@${ip}:/home/ubuntu/
-		ssh -i ${pem_file} ubuntu@${ip} chmod +x ${run_server_file} 
-		ssh -i ${pem_file} ubuntu@${ip} . ./${run_server_file}
+		#scp -i ${pem_file} env.cfg ubuntu@${ip}:/home/ubuntu/
+		#scp -i ${pem_file} ${run_server_file} ubuntu@${ip}:/home/ubuntu/
+		ssh -i ${pem_file} ubuntu@${ip} "cd pygmy && chmod +x ${run_server_file}" 
+		ssh -i ${pem_file} ubuntu@${ip} "cd pygmy && . ./${run_server_file}"
 	fi
 
 }
+copy_repo orderA ${orderA_ip}
+copy_repo orderB ${orderB_ip}
+copy_repo catalogA ${catalogA_ip}
+copy_repo catalogB ${catalogB_ip}
+copy_repo frontend ${frontend_ip}
+
 deploy_server orderA ${orderA_ip} run_orderA_server.sh
 deploy_server orderB ${orderB_ip} run_orderB_server.sh
 deploy_server catalogA ${catalogA_ip} run_catalogA_server.sh
@@ -40,7 +57,7 @@ deploy_server frontend ${frontend_ip} run_frontend_server.sh
 
 echo "###### Starting the Client Process. ######"
 sleep 2
-python client.py "http://${frontend_ip}" ${frontend_port} 5
+#python client.py "http://${frontend_ip}" ${frontend_port} 5
 
 get_log_files orderA ${orderA_ip}
 get_log_files orderB ${orderB_ip}

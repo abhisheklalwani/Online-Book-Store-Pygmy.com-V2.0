@@ -1,6 +1,13 @@
 #Spawing orderA container
 source env.cfg
-sudo docker pull himgupta1996/pygmy:order
+
+#Building order image
+cd order/
+sudo docker build -t himgupta1996/pygmy:order .
+cd ../
+
+#Creating orderA container from the order image
+#sudo docker pull himgupta1996/pygmy:order
 echo host=0.0.0.0 > orderA-env.txt
 echo port=${orderA_port} >> orderA-env.txt
 echo replica="http://${orderB_ip}:${orderB_port}" >> orderA-env.txt

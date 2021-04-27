@@ -1,6 +1,12 @@
+
 source env.cfg
+#Building frontend image
+cd frontend/
+sudo docker build -t himgupta1996/pygmy:frontend .
+cd ../
+
 #Spawing frontend container
-sudo docker pull himgupta1996/pygmy:frontend
+#sudo docker pull himgupta1996/pygmy:frontend
 echo host=0.0.0.0 > frontend-env.txt
 echo port=${frontend_port} >> frontend-env.txt
 echo catalogA="http://${catalogA_ip}:${catalogA_port}" >> frontend-env.txt
