@@ -105,6 +105,17 @@ def add_to_order():
     app.logger.info("Propagated update to database")
     return get_success_response("succesfully updated order id %s" %(order_id))
 
+def shutdown_server():
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        raise RuntimeError('Not running with the Werkzeug Server')
+    func()
+
+@app.route('/shutdown', methods=['GET'])
+def shutdown():
+    shutdown_server()
+    return '%s Server shutting down...'%(str(sys.argv[3]))
+
 if __name__=='__main__':
 
     app.run(host=str(sys.argv[1]), port=str(sys.argv[2]))

@@ -245,5 +245,16 @@ def propagate_by_id(id_):
     except Exception as e:
         return get_failed_response(message=str(e))
 
+def shutdown_server():
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        raise RuntimeError('Not running with the Werkzeug Server')
+    func()
+
+@app.route('/shutdown', methods=['GET'])
+def shutdown():
+    shutdown_server()
+    return '%s Server shutting down...'%(str(sys.argv[3]))
+    
 if __name__=='__main__':
     app.run(host=str(sys.argv[1]), port=str(sys.argv[2]))
