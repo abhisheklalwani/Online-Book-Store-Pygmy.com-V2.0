@@ -24,7 +24,7 @@ app = Flask(__name__)
 
 ###### Setting up logs for frontend and heatbeat ######
 formatter = logging.Formatter('%(asctime)s %(threadName)s %(levelname)s %(message)s')
-def setup_logger(name, log_file, level=logging.INFO):
+def setup_logger(name, log_file, level=logging.DEBUG):
     """To setup as many loggers as you want"""
 
     handler = logging.FileHandler(log_file, mode='w')
