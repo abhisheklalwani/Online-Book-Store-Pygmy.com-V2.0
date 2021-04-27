@@ -280,13 +280,13 @@ def lookup():
                 catalog_lock.release()
                 app.logger.debug('Catalog A is up, Calling Catalog Server A')
                 results=requests.get("%s/item/%s"%(CATALOG_SERVER_A["url"],id))
-                app.logger.info("Searching of items with topic '%s' successful."%(id))
+                app.logger.info("Searching of items with id '%s' successful."%(id))
             else:
                 if app.config['catalogB_status'] == "UP":
                     catalog_lock.release()
                     app.logger.debug('Catalog A is down, Calling Catalog Server B')
                     results=requests.get("%s/item/%s"%(CATALOG_SERVER_B["url"],id))
-                    app.logger.info("Searching of items with topic '%s' successful."%(id))
+                    app.logger.info("Searching of items with id '%s' successful."%(id))
                 else:
                     raise Exception("Both catalog servers are down")    
         else:
@@ -295,13 +295,13 @@ def lookup():
                 catalog_lock.release()
                 app.logger.debug('Catalog B is up, Calling Catalog Server B')
                 results=requests.get("%s/item/%s"%(CATALOG_SERVER_B["url"],id))
-                app.logger.info("Searching of items with topic '%s' successful."%(id))
+                app.logger.info("Searching of items with id '%s' successful."%(id))
             else:
                 if app.config['catalogA_status'] == "UP":
                     catalog_lock.release()
                     app.logger.debug('Catalog B is down, Calling Catalog Server A')
                     results=requests.get("%s/item/%s"%(CATALOG_SERVER_A["url"],id))
-                    app.logger.info("Searching of items with topic '%s' successful."%(id))
+                    app.logger.info("Searching of items with id '%s' successful."%(id))
                 else:
                     raise Exception("Both catalog servers are down")
         results=results.json()
