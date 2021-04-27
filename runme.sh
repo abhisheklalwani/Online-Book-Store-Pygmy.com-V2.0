@@ -57,12 +57,14 @@ deploy_server frontend ${frontend_ip} run_frontend_server.sh
 
 echo "###### Starting the Client Process. ######"
 sleep 2
-#python client.py "http://${frontend_ip}" ${frontend_port} 5
+python client.py "http://${frontend_ip}" ${frontend_port} 2
 
 get_log_files orderA ${orderA_ip}
 get_log_files orderB ${orderB_ip}
 get_log_files catalogA ${catalogA_ip}
 get_log_files catalogB ${catalogB_ip}
 get_log_files frontend ${frontend_ip}
+
+
 
 
