@@ -147,17 +147,19 @@ def buy():
     try:
         data = request.args
         id=data["id"]
-        app.logger.info("Buy method called with the item with id '%s' in catalog server." % (id))
+        app.logger.info("Buy method called with the item with id '%s' in order server." % (id))
         order_lock.acquire()
         if app.config['load_balancer_order'] == 0:
             if app.config['orderA_status'] == "UP":
                 app.config['load_balancer_order'] = 1
                 order_lock.release()
+                app.logger.debug('Order A is up, Calling Order Server A')
                 results=requests.get("%s/buy/%s"%(ORDER_SERVER_A["url"],id))
                 results=results.json()
             else:
                 if app.config['orderB_status'] == "UP":
                     order_lock.release()
+                    app.logger.debug('Order A is down, Calling Order Server B')
                     results=requests.get("%s/buy/%s"%(ORDER_SERVER_B["url"],id))
                     results=results.json()
                 else:
@@ -166,11 +168,13 @@ def buy():
             if app.config['orderB_status'] == "UP":
                 app.config['load_balancer_order'] = 0
                 order_lock.release()
+                app.logger.debug('Order B is up, Calling Order Server B')
                 results=requests.get("%s/buy/%s"%(ORDER_SERVER_B["url"],id))
                 results=results.json()
             else:
                 if app.config['orderA_status'] == "UP":
                     order_lock.release()
+                    app.logger.debug('Order B is down, Calling Order Server A')
                     results=requests.get("%s/buy/%s"%(ORDER_SERVER_A["url"],id))
                     results=results.json()
                 else:
@@ -182,8 +186,10 @@ def buy():
         app.logger.info("Connection error, sending request to the other order server")
         try:
             if app.config['load_balancer_order'] == 1:
+                app.logger.debug('Order A has crashed, Calling Order Server B')
                 results = requests.get("%s/item?topic=%s"%(ORDER_SERVER_B["url"],id))
             else:
+                app.logger.debug('Order B has crashed, Calling Order Server A')
                 results = requests.get("%s/item?topic=%s"%(ORDER_SERVER_A["url"],id))
             results = results.json()
             return results
@@ -210,11 +216,13 @@ def search():
             if app.config['catalogA_status'] == "UP":
                 app.config['load_balancer_catalog'] = 1
                 catalog_lock.release()
+                app.logger.debug('Catalog A is up, Calling Catalog Server A')
                 results=requests.get("%s/item?topic=%s"%(CATALOG_SERVER_A["url"],topic))
                 app.logger.info("Searching of items with topic '%s' successful."%(topic))
             else:
                 if app.config['catalogB_status'] == "UP":
                     catalog_lock.release()
+                    app.logger.debug('Catalog A is down, Calling Catalog Server B')
                     results=requests.get("%s/item?topic=%s"%(CATALOG_SERVER_B["url"],topic))
                     app.logger.info("Searching of items with topic '%s' successful."%(topic))
                 else:
@@ -223,11 +231,13 @@ def search():
             if app.config['catalogB_status'] == "UP":
                 app.config['load_balancer_catalog'] = 0
                 catalog_lock.release()
+                app.logger.debug('Catalog B is up, Calling Catalog Server B')
                 results=requests.get("%s/item?topic=%s"%(CATALOG_SERVER_B["url"],topic))
                 app.logger.info("Searching of items with topic '%s' successful."%(topic))
             else:
                 if app.config['catalogA_status'] == "UP":
                     catalog_lock.release()
+                    app.logger.debug('Catalog B is down, Calling Catalog Server A')
                     results=requests.get("%s/item?topic=%s"%(CATALOG_SERVER_A["url"],topic))
                     app.logger.info("Searching of items with topic '%s' successful."%(topic))
                 else:
@@ -238,8 +248,10 @@ def search():
         app.logger.info("Connection error, sending request to the other catalog server")
         try:
             if app.config['load_balancer_catalog'] == 1:
+                app.logger.debug('Catalog A has crashed, Calling Catalog Server B')
                 results = requests.get("%s/item?topic=%s"%(CATALOG_SERVER_B["url"],topic))
             else:
+                app.logger.debug('Catalog B has crashed, Calling Catalog Server A') 
                 results = requests.get("%s/item?topic=%s"%(CATALOG_SERVER_A["url"],topic))
             results = results.json()
             return results
@@ -266,11 +278,13 @@ def lookup():
             if app.config['catalogA_status'] == "UP":
                 app.config['load_balancer_catalog'] = 1
                 catalog_lock.release()
+                app.logger.debug('Catalog A is up, Calling Catalog Server A')
                 results=requests.get("%s/item/%s"%(CATALOG_SERVER_A["url"],id))
                 app.logger.info("Searching of items with topic '%s' successful."%(id))
             else:
                 if app.config['catalogB_status'] == "UP":
                     catalog_lock.release()
+                    app.logger.debug('Catalog A is down, Calling Catalog Server B')
                     results=requests.get("%s/item/%s"%(CATALOG_SERVER_B["url"],id))
                     app.logger.info("Searching of items with topic '%s' successful."%(id))
                 else:
@@ -279,11 +293,13 @@ def lookup():
             if app.config['catalogB_status'] == "UP":
                 app.config['load_balancer_catalog'] = 0
                 catalog_lock.release()
+                app.logger.debug('Catalog B is up, Calling Catalog Server B')
                 results=requests.get("%s/item/%s"%(CATALOG_SERVER_B["url"],id))
                 app.logger.info("Searching of items with topic '%s' successful."%(id))
             else:
                 if app.config['catalogA_status'] == "UP":
                     catalog_lock.release()
+                    app.logger.debug('Catalog B is down, Calling Catalog Server A')
                     results=requests.get("%s/item/%s"%(CATALOG_SERVER_A["url"],id))
                     app.logger.info("Searching of items with topic '%s' successful."%(id))
                 else:
@@ -294,8 +310,10 @@ def lookup():
         app.logger.info("Connection error, sending request to the other catalog server")
         try:
             if app.config['load_balancer_catalog'] == 1:
+                app.logger.debug('Catalog A has crashed, Calling Catalog Server B')
                 results = requests.get("%s/item/%s"%(CATALOG_SERVER_B["url"],id))
             else:
+                app.logger.debug('Catalog B has crashed, Calling Catalog Server A')
                 results = requests.get("%s/item/%s"%(CATALOG_SERVER_A["url"],id))
             results = results.json()
             return results
