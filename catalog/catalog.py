@@ -158,7 +158,7 @@ def item(id_ = None):
     except Exception as e:
         return get_failed_response(message=str(e))
     
-
+# method to either update the cost or count of an item
 @app.route("/item/<id_>",methods = ['PUT'])
 def update_by_id(id_):
     try:
@@ -181,23 +181,38 @@ def update_by_id(id_):
                 sql_query = "UPDATE catalog SET count = count %s %s where id = %s AND count > 0;" % (sign, count, id_)
                 cur.execute(sql_query) 
                 payload = {"count" : -count}
-                app.logger.info("Propagating the count of item %s" % (id_))
-                r = requests.put(catalog_url+"/item/propagate/%s"%(id_), data = json.dumps(payload))
+                #propagating the update to the other copy of the database
+                app.logger.info("Trying to propagate the update %s" % (id_))
+                try:
+                    r = requests.put(catalog_url+"/item/propagate/%s"%(id_), data = json.dumps(payload))
+                    app.logger.info("Propagating the count of item %s" % (id_))
+                except:
+                    app.logger.info("unable to propagate the update")
             else:
                 sign = "+"
                 sql_query = "UPDATE catalog SET count = count %s %s where id = %s;" % (sign, count, id_)
                 cur.execute(sql_query) 
                 payload = {"count" : count}
-                app.logger.info("Propagating the count of item %s" % (id_))
-                r = requests.put(catalog_url+"/item/propagate/%s"%(id_), data = json.dumps(payload))
+                #propagating the update to the other copy of the database
+                app.logger.info("Trying to propagate the update %s" % (id_))
+                try:
+                    r = requests.put(catalog_url+"/item/propagate/%s"%(id_), data = json.dumps(payload))
+                    app.logger.info("Propagating the count of item %s" % (id_))
+                except:
+                    app.logger.info("unable to propagate the update")
 
         if 'cost' in data:
             app.logger.info("Updating the cost of item %s" % (id_))
             sql_query = "UPDATE catalog SET cost = %s where id = %s;"%(data['cost'], id_)
             cur.execute(sql_query)
             payload = {"cost" : data['cost']}
-            app.logger.info("Propagating the cost of item %s" % (id_))
-            r = requests.put(catalog_url+"/item/propagate/%s"%(item_id), data = json.dumps(payload))
+            #propagating the update to the other copy of the database
+            app.logger.info("Trying to propagate the update %s" % (id_))
+            try:
+                r = requests.put(catalog_url+"/item/propagate/%s"%(id_), data = json.dumps(payload))
+                app.logger.info("Propagating the cost of item %s" % (id_))
+            except:
+                app.logger.info("unable to propagate the update")
         con.commit()
         con.close()
         app.logger.info('Catalog database update successful')
@@ -206,6 +221,7 @@ def update_by_id(id_):
     except Exception as e:
         return get_failed_response(message=str(e))
 
+# method invoked by other copies of catalog server to make updates 
 @app.route("/item/propagate/<id_>",methods = ['PUT'])
 def propagate_by_id(id_):
     try:
