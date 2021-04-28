@@ -29,6 +29,6 @@ echo "Successfully started the catalogA server"
 echo "Invoking test_server_recovery.py to check the recovery of the system."
 echo "Check the test_server_recovery.log for the result"
 sleep 2
-python test_server_recovery.py "http://${catalogA_ip}" ${catalogA_port} "http://${ctalogB_ip}" ${catalogB_port}
+python test_server_recovery.py "http://${catalogA_ip}" ${catalogA_port} "http://${catalogB_ip}" ${catalogB_port}
 
 
