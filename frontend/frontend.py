@@ -129,6 +129,7 @@ def buy():
                 # results=results.json()
             else:
                 if app.config['orderB_status'] == "UP" and app.config['catalogB_status'] == "UP":
+                    app.config['load_balancer_order'] = 1
                     order_lock.release()
                     app.logger.debug('Order A is down, Calling Order Server B')
                     results=requests.get("%s/buy/%s"%(ORDER_SERVER_B["url"],id))
@@ -145,6 +146,7 @@ def buy():
                 # results=results.json()
             else:
                 if app.config['orderA_status'] == "UP" and app.config['catalogA_status'] == "UP":
+                    app.config['load_balancer_order'] = 0
                     order_lock.release()
                     app.logger.debug('Order B is down, Calling Order Server A')
                     results=requests.get("%s/buy/%s"%(ORDER_SERVER_A["url"],id))
