@@ -206,6 +206,7 @@ def search():
                 app.logger.info("Searching of items with topic '%s' successful."%(topic))
             else:
                 if app.config['catalogB_status'] == "UP":
+                    app.config['load_balancer_catalog'] = 1
                     catalog_lock.release()
                     app.logger.debug('Catalog A is down, Calling Catalog Server B')
                     results=requests.get("%s/item?topic=%s"%(CATALOG_SERVER_B["url"],topic))
@@ -221,6 +222,7 @@ def search():
                 app.logger.info("Searching of items with topic '%s' successful."%(topic))
             else:
                 if app.config['catalogA_status'] == "UP":
+                    app.config['load_balancer_catalog'] = 0
                     catalog_lock.release()
                     app.logger.debug('Catalog B is down, Calling Catalog Server A')
                     results=requests.get("%s/item?topic=%s"%(CATALOG_SERVER_A["url"],topic))
