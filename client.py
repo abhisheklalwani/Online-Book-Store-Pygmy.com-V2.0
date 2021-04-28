@@ -105,7 +105,7 @@ def order_buy(item_id):
         r = requests.get("%s:%s/buy?id=%s"%(FRONTEND_SERVER["IP"],FRONTEND_SERVER["PORT"],item_id))
         if r.status_code == 200:
             logger.info("Succesfully bought the item '%s'" % (item_id))
-            return r.json()['order']
+            # return r.json()['order']
         else:
             logger.info("Buy of item '%s' failed with status_code: %s"%(item_id, r.status_code))
     except Exception as e:

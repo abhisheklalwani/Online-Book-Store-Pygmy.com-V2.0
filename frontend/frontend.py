@@ -13,8 +13,6 @@ import multiprocessing
 from threading import Thread
 import time
 
-# logging.basicConfig(filename=str(sys.argv[3])+".log", level=logging.DEBUG, format='%(asctime)s %(message)s %(threadName)s', filemode='w')
-
 config = {          
     "CACHE_TYPE": "SimpleCache",
     "CACHE_DEFAULT_TIMEOUT": 0
@@ -74,24 +72,6 @@ ORDER_SERVER_A = {"type": "order", "url": str(sys.argv[6])}
 ORDER_SERVER_B = {"type": "order", "url": str(sys.argv[7])}
 ##################################
 
-# class hbCatalogA(Thread):
-#     def __init__(self, ip, port):
-#         Thread.__init__(self)
-#         self.running = True
-#         self.ip = ip
-#         self.port = port
-
-#     def run(self):
-#         while self.running:
-#             if isUp(self.ip, self.port):
-#                 app.config['catalogA_status'] = "UP"
-#             else:
-#                 app.config['catalogA_status'] = "DOWN"
-#             time.sleep(1)
-#     def stop(self):
-#         self.running = False
-
-
 def isUp(ip,port):
    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
    try:
@@ -125,15 +105,6 @@ def start_heartbeats():
     catalogB_heartbeat_thread.start()
     orderA_heartbeat_thread.start()
     orderB_heartbeat_thread.start()
-    # CatalogA_heartbeat = hbCatalogA(CATALOG_SERVER_A['url'].split(':')[0]+CATALOG_SERVER_A['url'].split(':')[1],CATALOG_SERVER_A['url'].split(':')[2])
-    # CatalogB_heartbeat = hbCatalogB(CATALOG_SERVER_B['url'].split(':')[0]+CATALOG_SERVER_B['url'].split(':')[1],CATALOG_SERVER_B['url'].split(':')[2])
-    # OrderA_heartbeat = hbOrderA(ORDER_SERVER_A['url'].split(':')[0]+ORDER_SERVER_A['url'].split(':')[1],ORDER_SERVER_A['url'].split(':')[2])
-    # OrderB_heartbeat = hbOrderB(ORDER_SERVER_B['url'].split(':')[0]+ORDER_SERVER_B['url'].split(':')[1],ORDER_SERVER_B['url'].split(':')[2])
-
-    # CatalogA_heartbeat.start()
-    # CatalogB_heartbeat.start()
-    # OrderA_heartbeat.start()
-    # OrderB_heartbeat.start()
 
 # defining the default page
 @app.route('/', methods=['GET'])
@@ -155,33 +126,39 @@ def buy():
                 order_lock.release()
                 app.logger.debug('Order A is up, Calling Order Server A')
                 results=requests.get("%s/buy/%s"%(ORDER_SERVER_A["url"],id))
-                results=results.json()
+                # results=results.json()
             else:
                 if app.config['orderB_status'] == "UP":
                     order_lock.release()
                     app.logger.debug('Order A is down, Calling Order Server B')
                     results=requests.get("%s/buy/%s"%(ORDER_SERVER_B["url"],id))
-                    results=results.json()
+                    # results=results.json()
                 else:
                     raise Exception("Both order servers are down")
+
         else:
             if app.config['orderB_status'] == "UP":
                 app.config['load_balancer_order'] = 0
                 order_lock.release()
                 app.logger.debug('Order B is up, Calling Order Server B')
                 results=requests.get("%s/buy/%s"%(ORDER_SERVER_B["url"],id))
-                results=results.json()
+                # results=results.json()
             else:
                 if app.config['orderA_status'] == "UP":
                     order_lock.release()
                     app.logger.debug('Order B is down, Calling Order Server A')
                     results=requests.get("%s/buy/%s"%(ORDER_SERVER_A["url"],id))
-                    results=results.json()
+                    # results=results.json()
                 else:
                     raise Exception("Both order servers are down")
+        
         cache.clear()
         app.logger.info("Purchase of item '%s' successfull."%(id))
-        return results
+        if results.status_code != 200:
+            error_message = results.json()['message']
+            return get_failed_response(message = str(error_message))
+        else:
+            return get_success_response("frontend", output=[], message = str(results.json()['message']))
     except requests.exceptions.ConnectionError as e:
         app.logger.info("Connection error, sending request to the other order server")
         try:
@@ -191,13 +168,16 @@ def buy():
             else:
                 app.logger.debug('Order B has crashed, Calling Order Server A')
                 results = requests.get("%s/item?topic=%s"%(ORDER_SERVER_A["url"],id))
-            results = results.json()
-            return results
+            if results.status_code != 200:
+                error_message = results.json()['message']
+                return get_failed_response(message = str(error_message))
+            else:
+                return get_success_response("frontend", output=[], message = str(results.json()['message']))
         except:
             app.logger.info("Failed to connect to the other catalog server. Error: %s" % (str(e)))
             return get_failed_response(message=str(e))
     except Exception as e:
-        app.logger.info("Failed to connect to order server. Error: %s" % (str(e)))
+        app.logger.info("Failed to buy the item. Error: %s" % (str(e)))
         return get_failed_response(message=str(e))
 
 

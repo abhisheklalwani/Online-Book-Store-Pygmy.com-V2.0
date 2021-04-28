@@ -145,7 +145,7 @@ def buy(item_id = None):
             return get_failed_response(message = "The item with id %s is no longer present in the catalog server" % (item_id), status_code = 404)
     
     except Exception as e:
-        app.logger.info("Failed to connect to catalog server. Error: %s" % (str(e)))
+        app.logger.info("Failed to buy from catalog server. Error: %s" % (str(e)))
         return get_failed_response(message=str(e))
 
 
