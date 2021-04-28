@@ -31,30 +31,6 @@ def dict_factory(cursor, row):
         d[col[0]] = row[idx]
     return d
 
-# con = sqlite3.connect('catalog.db')
-# cur = con.cursor();
-# cur.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='catalog';")
-# response = cur.fetchone()
-# if response == None:
-#     cur.execute("create table IF NOT EXISTS catalog (id INTEGER PRIMARY KEY,title text,count INTEGER, cost INTEGER, topic text)")
-#     sql_query ="INSERT INTO catalog(id,title,count,cost,topic) VALUES(?,?,?,?,?) "
-#     values_1 = (1, 'How to get a good grade in 677 in 20 minutes a day.', 5, 10, 'distributed systems');
-#     values_2 = (2, 'RPCs for Dummies.', 5, 10, 'distributed systems');
-#     values_3 = (3, 'Xen and the Art of Surviving Graduate School.', 5, 10, 'graduate school');
-#     values_4 = (4, 'Cooking for the Impatient Graduate Student.', 5, 10, 'graduate school');
-#     values_5 = (5, 'How to finish Project 3 on time', 5, 10, 'distributed systems');
-#     values_6 = (6, 'Why theory classes are so hard.', 5, 10, 'graduate school');
-#     values_7 = (7, 'Spring in the Pioneer Valley', 5, 10, 'graduate school');
-#     cur.execute(sql_query,values_1)
-#     cur.execute(sql_query,values_2)
-#     cur.execute(sql_query,values_3)
-#     cur.execute(sql_query,values_4)
-#     cur.execute(sql_query,values_5)
-#     cur.execute(sql_query,values_6)
-#     cur.execute(sql_query,values_7)
-# con.commit()
-# con.close()
-
 try:
     app.logger.info("restarting after a crash")
     r = requests.get(catalog_url+"/item")
@@ -82,13 +58,13 @@ except:
     if response == None:
         cur.execute("create table IF NOT EXISTS catalog (id INTEGER PRIMARY KEY,title text,count INTEGER, cost INTEGER, topic text)")
         sql_query ="INSERT INTO catalog(id,title,count,cost,topic) VALUES(?,?,?,?,?) "
-        values_1 = (1, 'How to get a good grade in 677 in 20 minutes a day.', 5, 10, 'distributed systems');
-        values_2 = (2, 'RPCs for Dummies.', 5, 10, 'distributed systems');
-        values_3 = (3, 'Xen and the Art of Surviving Graduate School.', 5, 10, 'graduate school');
-        values_4 = (4, 'Cooking for the Impatient Graduate Student.', 5, 10, 'graduate school');
-        values_5 = (5, 'How to finish Project 3 on time', 5, 10, 'distributed systems');
-        values_6 = (6, 'Why theory classes are so hard.', 5, 10, 'graduate school');
-        values_7 = (7, 'Spring in the Pioneer Valley', 5, 10, 'graduate school');
+        values_1 = (1, 'How to get a good grade in 677 in 20 minutes a day.', 100, 10, 'distributed systems');
+        values_2 = (2, 'RPCs for Dummies.', 100, 10, 'distributed systems');
+        values_3 = (3, 'Xen and the Art of Surviving Graduate School.', 100, 9, 'graduate school');
+        values_4 = (4, 'Cooking for the Impatient Graduate Student.', 100, 8, 'graduate school');
+        values_5 = (5, 'How to finish Project 3 on time', 100, 7, 'distributed systems');
+        values_6 = (6, 'Why theory classes are so hard.', 100, 6, 'graduate school');
+        values_7 = (7, 'Spring in the Pioneer Valley', 100, 5, 'graduate school');
         cur.execute(sql_query,values_1)
         cur.execute(sql_query,values_2)
         cur.execute(sql_query,values_3)

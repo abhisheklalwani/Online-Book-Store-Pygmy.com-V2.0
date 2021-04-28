@@ -12,7 +12,7 @@ logging.basicConfig(filename=str(sys.argv[3])+".log", level=logging.DEBUG, forma
 # order A contacts catalog A, if catalog A is down it contacts catalog B
 
 catalog_url = str(sys.argv[5])
-catalog_other_url= ""
+catalog_other_url= str(sys.argv[6])
 order_url= str(sys.argv[4])
 
 app = Flask(__name__)
