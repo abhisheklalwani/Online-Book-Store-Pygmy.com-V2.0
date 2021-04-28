@@ -121,14 +121,14 @@ def buy():
         app.logger.info("Buy method called with the item with id '%s' in order server." % (id))
         order_lock.acquire()
         if app.config['load_balancer_order'] == 0:
-            if app.config['orderA_status'] == "UP":
+            if app.config['orderA_status'] == "UP" and app.config['catalogA_status'] == "UP":
                 app.config['load_balancer_order'] = 1
                 order_lock.release()
                 app.logger.debug('Order A is up, Calling Order Server A')
                 results=requests.get("%s/buy/%s"%(ORDER_SERVER_A["url"],id))
                 # results=results.json()
             else:
-                if app.config['orderB_status'] == "UP":
+                if app.config['orderB_status'] == "UP" and app.config['catalogB_status'] == "UP":
                     order_lock.release()
                     app.logger.debug('Order A is down, Calling Order Server B')
                     results=requests.get("%s/buy/%s"%(ORDER_SERVER_B["url"],id))
@@ -137,14 +137,14 @@ def buy():
                     raise Exception("Both order servers are down")
 
         else:
-            if app.config['orderB_status'] == "UP":
+            if app.config['orderB_status'] == "UP" and app.config['catalogB_status'] == "UP":
                 app.config['load_balancer_order'] = 0
                 order_lock.release()
                 app.logger.debug('Order B is up, Calling Order Server B')
                 results=requests.get("%s/buy/%s"%(ORDER_SERVER_B["url"],id))
                 # results=results.json()
             else:
-                if app.config['orderA_status'] == "UP":
+                if app.config['orderA_status'] == "UP" and app.config['catalogA_status'] == "UP":
                     order_lock.release()
                     app.logger.debug('Order B is down, Calling Order Server A')
                     results=requests.get("%s/buy/%s"%(ORDER_SERVER_A["url"],id))
@@ -156,7 +156,7 @@ def buy():
         app.logger.info("Purchase of item '%s' successfull."%(id))
         app.logger.debug("The results of the buy is %s "% results.json())
         if results.status_code != 200:
-            # error_message = results.json()['message']
+            error_message = results.json()['message']
             return get_failed_response(message = str(error_message))
         else:
             cache.clear()
