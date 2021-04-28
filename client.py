@@ -147,8 +147,6 @@ def client_call(client_id):
             item_bought=order_buy(id_)
         else:
             logger.info("Item with id '%s' got finished in the server." % (id_))
-        logger.info("---------------------------------------------------------")
-        time.sleep(2)
 
 if __name__ == "__main__":
     #Default value of n=5

@@ -152,13 +152,16 @@ def buy():
                 else:
                     raise Exception("Both order servers are down")
         
-        cache.clear()
+        
         app.logger.info("Purchase of item '%s' successfull."%(id))
+        app.logger.debug("The results of the buy is %s "% results.json())
         if results.status_code != 200:
-            error_message = results.json()['message']
+            # error_message = results.json()['message']
             return get_failed_response(message = str(error_message))
         else:
+            cache.clear()
             return get_success_response("frontend", output=[], message = str(results.json()['message']))
+
     except requests.exceptions.ConnectionError as e:
         app.logger.info("Connection error, sending request to the other order server")
         try:
@@ -172,8 +175,10 @@ def buy():
                 error_message = results.json()['message']
                 return get_failed_response(message = str(error_message))
             else:
+                cache.clear()
                 return get_success_response("frontend", output=[], message = str(results.json()['message']))
         except:
+
             app.logger.info("Failed to connect to the other catalog server. Error: %s" % (str(e)))
             return get_failed_response(message=str(e))
     except Exception as e:

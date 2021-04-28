@@ -22,7 +22,7 @@ log.disabled = True
 
 from sqlite_db import order
 try:
-    app.logger.info("restarting after a crash")
+    app.logger.info("Starting the server...")
     order_db = order()
     r=requests.get(order_url+"/orders")
     if r.status_code==200:
@@ -35,7 +35,6 @@ try:
         new_orders=r["order"]
         for new_order in new_orders:
             #looping over all the orders received from other replica
-            app.logger.info("sending to database")
             order_db.add_order({'item_id': new_order['item_id'], 'created':  new_order['created']})
 except:
     app.logger.info("Other server could not be contacted")
@@ -90,8 +89,8 @@ def buy(item_id = None):
             try:
                 r = requests.put(order_url+"/update", data = json.dumps(payload_order))
                 app.logger.info("Propagating update to order database")
-            except:
-                app.logger.info("unable to propagate the update")
+            except Exception as e:
+                app.logger.info("unable to propagate the update with error %s" % (str(e)))
             return get_success_response("order", output = {'id': order_id}, message = "Item with id %s bought successfully." % (item_id))
         else:
             app.logger.info("The item with id %s is no longer present in the catalog server. Restocking the catalog server" % (item_id))
@@ -120,7 +119,7 @@ def buy(item_id = None):
         if item_count>0:
             app.logger.info("Item with id %s present in the other catalog server. Going ahead to buy it" % (item_id))
             payload = {"count" : -1}
-            r = requests.put(catalog_url+"/item/%s"%(item_id), data = json.dumps(payload))
+            r = requests.put(catalog_other_url+"/item/%s"%(item_id), data = json.dumps(payload))
             if r.status_code != 201:
                 app.logger.error("Error: %s" % (str(r.json())))
                 return get_failed_response(message = "Failed to update the other catalog server.")
@@ -128,12 +127,13 @@ def buy(item_id = None):
             app.logger.info("Successfully bought the item %s from the other catalog server." % (item_id))
             #propagating update
             order_id = order_db.add_order({'item_id': item_id, 'created':  str(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))})
+            payload_order={"update":{'item_id': item_id, 'created':  str(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))}}
             app.logger.info("trying to propagate update")
             try:
                 r = requests.put(order_url+"/update", data = json.dumps(payload_order))
                 app.logger.info("Propagating update to order database")
-            except:
-                app.logger.info("unable to propagate the update")
+            except Exception as e:
+                app.logger.info("unable to propagate the update with error %s" % (str(e)))
             return get_success_response("order", output = {'id': order_id}, message = "Item with id %s bought successfully." % (item_id))
         else:
             app.logger.info("The item with id %s is no longer present in the catalog server. Restocking the catalog server" % (item_id))
