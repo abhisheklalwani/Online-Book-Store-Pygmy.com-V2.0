@@ -5,6 +5,28 @@ echo "###### Testing fault tolerance of the system ######"
 echo "Calling the shutdown API to stop the catalogA server"
 curl http://${catalogA_ip}:${catalogA_port}/shutdown
 echo "Successfully crashed the catalogA server"
+get_log_files()
+{
+	        if [[ $2 == $myip ]]; then
+			                echo "Copying $1.log"
+					                sudo docker cp $1:/app/$1.log logs/
+							                if [[ "$1" == "frontend" ]]; then
+										                        echo "Copying heartbeat.log"
+													                        sudo docker cp $1:/app/heartbeat.log logs/
+																                fi
+																		        else
+																				                ip=$2
+																						                echo "Copying $1.log"
+																								                ssh -i ${pem_file} ubuntu@${ip} sudo docker cp $1:/app/$1.log .
+																										                scp -i ${pem_file} ubuntu@${ip}:$1.log logs/
+																												                if [[ "$1" == "frontend" ]]; then
+																															                        echo "Copying heartbeat.log"
+																																		                        ssh -i ${pem_file} ubuntu@${ip} sudo docker cp $1:/app/heartbeat.log .
+																																					                        scp -i ${pem_file} ubuntu@${ip}:heartbeat.log logs/
+																																								                fi
+																																										        fi
+
+																																										}
 start_server()
 {
 	if [[ $2 == $myip ]]; then
@@ -31,4 +53,9 @@ echo "Check the test_server_recovery.log for the result"
 sleep 2
 python test_server_recovery.py "http://${catalogA_ip}" ${catalogA_port} "http://${catalogB_ip}" ${catalogB_port}
 
-
+echo "Copying Log Files"
+get_log_files orderA ${orderA_ip}
+get_log_files orderB ${orderB_ip}
+get_log_files catalogA ${catalogA_ip}
+get_log_files catalogB ${catalogB_ip}
+get_log_files frontend ${frontend_ip}
