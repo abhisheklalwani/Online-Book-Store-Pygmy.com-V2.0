@@ -25,13 +25,15 @@ Installing Docker
 1. `catalog/catalog.py` implements the catalog server with the relevant GET and PUT methods.
 2. `frontend/frontend.py` implements the front end server with the buy, search and lookup methods.
 3. `order/order.py` implements the order server with the buy method. 
-4. `Docs` contains the design documentation and the test case documentation.
-5. `requirements.txt` contains the python libraries required.
-6. `env.cfg` contains the `PUBLIC_IP` and `PORT` of the machines where the catalog, order and frontend server has to be run. It also contains the reference to the `pem` file that is required to ssh, and scp to the remote machines. Modify the file according to your requirements.
-7. `runme.sh` is a single script to automatically deploy catalog, order and frontend docker servers on specified machines in `env.cfg`, run the client.py and get the logs from all the servers.
-8. `simulate_fault_tolerance.sh` is a single script to check falut tolerance of the system. The script specifically brings down the catalogA and invokes the client.py to check if the system is working correctly even if one of the server is down. Then it brings the server up and calls the python file `test_server_recovery.py` to check if the system was able to recover from the crash. 
-9. `const.py` contains information about the books in the catalog server.
-10. `Docs` contains the design documentation 
+4. `Docs` folder contains the design documentation and API documention.
+5. `logs` folder contains all the logs of the servers after the execution of the script `runme.sh`. For eg. orderA.log, frontend.log etc. It will also contain the log file `heartbeat.log` which contains the heartbeats of different servers captured by frontend.
+6. `requirements.txt` contains the python libraries required.
+7. `env.cfg` contains the `PUBLIC_IP` and `PORT` of the machines where the catalog, order and frontend server has to be run. It also contains the reference to the `pem` file that is required to ssh, and scp to the remote machines. Modify the file according to your requirements.
+8. `runme.sh` is a single script to automatically deploy catalog, order and frontend docker servers on specified machines in `env.cfg`, run the client.py and get the logs from all the servers.
+9. `client.py` starts the traffic by sending multiple requests to frontend parrallely and sequentially. This script is called by `runme.sh` internally.
+10. `simulate_fault_tolerance.sh` is a single script to check falut tolerance of the system. The script specifically brings down the catalogA and invokes the client.py to check if the system is working correctly even if one of the server is down. Then it brings the server up and calls the python file `test_server_recovery.py` to check if the system was able to recover from the crash. 
+11. `const.py` contains information about the books in the catalog server.
+12. `Docs` contains the design documentation 
 
 Please find the instructions below for testing the implementation.
 
