@@ -42,7 +42,7 @@ Please find the instructions below for testing the implementation.
 ### To run the server locally
 
 1. Define the ip and ports of order, catalog and front end server by editing the `env.cfg` file. For running locally make the IPs for the server as `http://<public_ip_of_local_vm>`.
-2. Now, on your local machine, run the `runme.sh` file which deploy all the dockers and then trigger the client.py for starting the traffic. USAGE: `. ./runme.sh`.
+2. Now, on your local machine, run the `runme.sh` file which deploy all the dockers and then trigger the client.py for starting the traffic. USAGE: `. ./runme.sh`. If you face any permission issue, try to run the script with root user.
 3. You can observe the results of this run in different log files that should be accumulated under the folder `logs`. `client.log` in the main folder will contain the logs of `client.py` script.
 
 ### To run servers remotely 
@@ -53,7 +53,7 @@ Please find the instructions below for testing the implementation.
 3. Set up password-less ssh from the local machine to the ec2 servers by running the following command from the local terminal:
     `ssh -i <pem_file_path> ubuntu@<ec2_public_ip>` with the private pem file and the public IP address of the EC2 instance that has been set up. (This will add the ec2 server to the known_host file so that you can ssh from the script without the need of a password). Please note that ubuntu is default username of an AWS Ubuntu VM. You can alter it according to your need.
 4. Define the ip and ports of order, catalog and front end server by editing the `env.cfg` file. Change the port IDs of the servers as pleased. Also provide the path of the pem file. Instructions to change the file is specified in the same.
-5. Now, on your local machine, run the `runme.sh` file which deploy all the dockers and then trigger the client.py for starting the traffic. USAGE: `. ./runme.sh`.
+5. Now, on your local machine, run the `runme.sh` file which deploy all the dockers and then trigger the client.py for starting the traffic. USAGE: `. ./runme.sh`. If you face any permission issue, try to run the script with root user.
 6. You can observe the results of this run in different log files that should be accumulated under the folder `logs`. `client.log` in the main folder will contain the logs of `client.py` script.
 
 ### To simute and check fault tolerance of the system
