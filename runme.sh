@@ -10,7 +10,7 @@ copy_repo()
 		echo "pygmy repo already present locally."
 	else
 		echo "###### Copying the pygmy repo to the machine $2 to run $1 server ######"
-		scp -i ${pem_file} -r ../pygmy ubuntu@${ip}:.
+		scp -i ${pem_file} -r ../pygmy ubuntu@$2:.
 	fi
 }
 
