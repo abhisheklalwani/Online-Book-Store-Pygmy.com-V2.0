@@ -1,0 +1,123 @@
+2021-05-01 02:49:16,533 Starting the server... MainThread
+2021-05-01 02:49:16,543 Starting new HTTP connection (1): 184.72.121.209:8014 MainThread
+2021-05-01 02:49:16,547 Other server could not be contacted MainThread
+2021-05-01 02:49:40,233 Recieved a buy request of the item 3 Thread-4
+2021-05-01 02:49:40,235 Starting new HTTP connection (1): 34.207.65.75:8011 Thread-4
+2021-05-01 02:49:40,240 http://34.207.65.75:8011 "GET /item/3 HTTP/1.1" 200 177 Thread-4
+2021-05-01 02:49:40,241 Item with id 3 present in the catalog server. Going ahead to buy it Thread-4
+2021-05-01 02:49:40,242 Starting new HTTP connection (1): 34.207.65.75:8011 Thread-4
+2021-05-01 02:49:40,270 http://34.207.65.75:8011 "PUT /item/3 HTTP/1.1" 201 66 Thread-4
+2021-05-01 02:49:40,271 Successfully bought the item 3 from the catalog server. Thread-4
+2021-05-01 02:49:40,276 trying to propagate update Thread-4
+2021-05-01 02:49:40,278 Starting new HTTP connection (1): 184.72.121.209:8014 Thread-4
+2021-05-01 02:49:40,293 http://184.72.121.209:8014 "PUT /update HTTP/1.1" 200 96 Thread-4
+2021-05-01 02:49:40,293 Propagating update to order database Thread-4
+2021-05-01 02:49:40,312 Propagated update to database Thread-5
+2021-05-01 02:49:40,380 Recieved a buy request of the item 1 Thread-6
+2021-05-01 02:49:40,382 Starting new HTTP connection (1): 34.207.65.75:8011 Thread-6
+2021-05-01 02:49:40,387 http://34.207.65.75:8011 "GET /item/1 HTTP/1.1" 200 188 Thread-6
+2021-05-01 02:49:40,388 Item with id 1 present in the catalog server. Going ahead to buy it Thread-6
+2021-05-01 02:49:40,389 Starting new HTTP connection (1): 34.207.65.75:8011 Thread-6
+2021-05-01 02:49:40,419 http://34.207.65.75:8011 "PUT /item/1 HTTP/1.1" 201 66 Thread-6
+2021-05-01 02:49:40,420 Successfully bought the item 1 from the catalog server. Thread-6
+2021-05-01 02:49:40,426 trying to propagate update Thread-6
+2021-05-01 02:49:40,428 Starting new HTTP connection (1): 184.72.121.209:8014 Thread-6
+2021-05-01 02:49:40,440 http://184.72.121.209:8014 "PUT /update HTTP/1.1" 200 96 Thread-6
+2021-05-01 02:49:40,441 Propagating update to order database Thread-6
+2021-05-01 02:49:40,461 Propagated update to database Thread-7
+2021-05-01 02:49:40,527 Recieved a buy request of the item 6 Thread-9
+2021-05-01 02:49:40,529 Starting new HTTP connection (1): 34.207.65.75:8011 Thread-9
+2021-05-01 02:49:40,534 http://34.207.65.75:8011 "GET /item/6 HTTP/1.1" 200 163 Thread-9
+2021-05-01 02:49:40,535 Item with id 6 present in the catalog server. Going ahead to buy it Thread-9
+2021-05-01 02:49:40,536 Starting new HTTP connection (1): 34.207.65.75:8011 Thread-9
+2021-05-01 02:49:40,556 http://34.207.65.75:8011 "PUT /item/6 HTTP/1.1" 201 66 Thread-9
+2021-05-01 02:49:40,557 Successfully bought the item 6 from the catalog server. Thread-9
+2021-05-01 02:49:40,562 trying to propagate update Thread-9
+2021-05-01 02:49:40,563 Starting new HTTP connection (1): 184.72.121.209:8014 Thread-9
+2021-05-01 02:49:40,573 http://184.72.121.209:8014 "PUT /update HTTP/1.1" 200 96 Thread-9
+2021-05-01 02:49:40,573 Propagating update to order database Thread-9
+2021-05-01 02:49:40,593 Propagated update to database Thread-10
+2021-05-01 02:49:40,658 Recieved a buy request of the item 3 Thread-11
+2021-05-01 02:49:40,660 Starting new HTTP connection (1): 34.207.65.75:8011 Thread-11
+2021-05-01 02:49:40,665 http://34.207.65.75:8011 "GET /item/3 HTTP/1.1" 200 176 Thread-11
+2021-05-01 02:49:40,665 Item with id 3 present in the catalog server. Going ahead to buy it Thread-11
+2021-05-01 02:49:40,667 Starting new HTTP connection (1): 34.207.65.75:8011 Thread-11
+2021-05-01 02:50:10,759 http://34.207.65.75:8011 "PUT /item/3 HTTP/1.1" 201 66 Thread-11
+2021-05-01 02:50:10,760 Successfully bought the item 3 from the catalog server. Thread-11
+2021-05-01 02:50:10,764 trying to propagate update Thread-11
+2021-05-01 02:50:10,766 Starting new HTTP connection (1): 184.72.121.209:8014 Thread-11
+2021-05-01 02:50:10,781 Propagated update to database Thread-42
+2021-05-01 02:50:10,790 http://184.72.121.209:8014 "PUT /update HTTP/1.1" 200 96 Thread-11
+2021-05-01 02:50:10,791 Propagating update to order database Thread-11
+2021-05-01 02:50:10,857 Recieved a buy request of the item 6 Thread-43
+2021-05-01 02:50:10,859 Starting new HTTP connection (1): 34.207.65.75:8011 Thread-43
+2021-05-01 02:50:10,865 http://34.207.65.75:8011 "GET /item/6 HTTP/1.1" 200 162 Thread-43
+2021-05-01 02:50:10,866 Item with id 6 present in the catalog server. Going ahead to buy it Thread-43
+2021-05-01 02:50:10,867 Starting new HTTP connection (1): 34.207.65.75:8011 Thread-43
+2021-05-01 02:50:10,925 http://34.207.65.75:8011 "PUT /item/6 HTTP/1.1" 201 66 Thread-43
+2021-05-01 02:50:10,926 Successfully bought the item 6 from the catalog server. Thread-43
+2021-05-01 02:50:10,931 trying to propagate update Thread-43
+2021-05-01 02:50:10,932 Starting new HTTP connection (1): 184.72.121.209:8014 Thread-43
+2021-05-01 02:50:10,946 http://184.72.121.209:8014 "PUT /update HTTP/1.1" 200 96 Thread-43
+2021-05-01 02:50:10,947 Propagating update to order database Thread-43
+2021-05-01 02:50:10,981 Propagated update to database Thread-44
+2021-05-01 02:50:11,053 Recieved a buy request of the item 2 Thread-45
+2021-05-01 02:50:11,055 Starting new HTTP connection (1): 34.207.65.75:8011 Thread-45
+2021-05-01 02:50:11,059 http://34.207.65.75:8011 "GET /item/2 HTTP/1.1" 200 153 Thread-45
+2021-05-01 02:50:11,060 Item with id 2 present in the catalog server. Going ahead to buy it Thread-45
+2021-05-01 02:50:11,061 Starting new HTTP connection (1): 34.207.65.75:8011 Thread-45
+2021-05-01 02:50:41,157 http://34.207.65.75:8011 "PUT /item/2 HTTP/1.1" 201 66 Thread-45
+2021-05-01 02:50:41,158 Successfully bought the item 2 from the catalog server. Thread-45
+2021-05-01 02:50:41,163 trying to propagate update Thread-45
+2021-05-01 02:50:41,164 Starting new HTTP connection (1): 184.72.121.209:8014 Thread-45
+2021-05-01 02:50:41,178 http://184.72.121.209:8014 "PUT /update HTTP/1.1" 200 97 Thread-45
+2021-05-01 02:50:41,179 Propagating update to order database Thread-45
+2021-05-01 02:50:41,195 Propagated update to database Thread-76
+2021-05-01 02:50:41,263 Recieved a buy request of the item 1 Thread-77
+2021-05-01 02:50:41,265 Starting new HTTP connection (1): 34.207.65.75:8011 Thread-77
+2021-05-01 02:50:41,271 http://34.207.65.75:8011 "GET /item/1 HTTP/1.1" 200 187 Thread-77
+2021-05-01 02:50:41,272 Item with id 1 present in the catalog server. Going ahead to buy it Thread-77
+2021-05-01 02:50:41,273 Starting new HTTP connection (1): 34.207.65.75:8011 Thread-77
+2021-05-01 02:50:41,294 http://34.207.65.75:8011 "PUT /item/1 HTTP/1.1" 201 66 Thread-77
+2021-05-01 02:50:41,294 Successfully bought the item 1 from the catalog server. Thread-77
+2021-05-01 02:50:41,300 trying to propagate update Thread-77
+2021-05-01 02:50:41,301 Starting new HTTP connection (1): 184.72.121.209:8014 Thread-77
+2021-05-01 02:50:41,310 http://184.72.121.209:8014 "PUT /update HTTP/1.1" 200 97 Thread-77
+2021-05-01 02:50:41,311 Propagating update to order database Thread-77
+2021-05-01 02:50:41,328 Propagated update to database Thread-78
+2021-05-01 02:50:41,402 Recieved a buy request of the item 4 Thread-79
+2021-05-01 02:50:41,404 Starting new HTTP connection (1): 34.207.65.75:8011 Thread-79
+2021-05-01 02:50:41,411 http://34.207.65.75:8011 "GET /item/4 HTTP/1.1" 200 174 Thread-79
+2021-05-01 02:50:41,411 Item with id 4 present in the catalog server. Going ahead to buy it Thread-79
+2021-05-01 02:50:41,413 Starting new HTTP connection (1): 34.207.65.75:8011 Thread-79
+2021-05-01 02:50:41,435 http://34.207.65.75:8011 "PUT /item/4 HTTP/1.1" 201 66 Thread-79
+2021-05-01 02:50:41,436 Successfully bought the item 4 from the catalog server. Thread-79
+2021-05-01 02:50:41,442 trying to propagate update Thread-79
+2021-05-01 02:50:41,444 Starting new HTTP connection (1): 184.72.121.209:8014 Thread-79
+2021-05-01 02:50:41,457 http://184.72.121.209:8014 "PUT /update HTTP/1.1" 200 97 Thread-79
+2021-05-01 02:50:41,457 Propagating update to order database Thread-79
+2021-05-01 02:50:41,475 Propagated update to database Thread-80
+2021-05-01 02:50:41,544 Recieved a buy request of the item 3 Thread-81
+2021-05-01 02:50:41,546 Starting new HTTP connection (1): 34.207.65.75:8011 Thread-81
+2021-05-01 02:50:41,551 http://34.207.65.75:8011 "GET /item/3 HTTP/1.1" 200 176 Thread-81
+2021-05-01 02:50:41,551 Item with id 3 present in the catalog server. Going ahead to buy it Thread-81
+2021-05-01 02:50:41,553 Starting new HTTP connection (1): 34.207.65.75:8011 Thread-81
+2021-05-01 02:51:11,648 http://34.207.65.75:8011 "PUT /item/3 HTTP/1.1" 201 66 Thread-81
+2021-05-01 02:51:11,649 Successfully bought the item 3 from the catalog server. Thread-81
+2021-05-01 02:51:11,653 trying to propagate update Thread-81
+2021-05-01 02:51:11,655 Starting new HTTP connection (1): 184.72.121.209:8014 Thread-81
+2021-05-01 02:51:11,669 Propagated update to database Thread-112
+2021-05-01 02:51:11,678 http://184.72.121.209:8014 "PUT /update HTTP/1.1" 200 97 Thread-81
+2021-05-01 02:51:11,679 Propagating update to order database Thread-81
+2021-05-01 02:51:11,745 Recieved a buy request of the item 2 Thread-114
+2021-05-01 02:51:11,747 Starting new HTTP connection (1): 34.207.65.75:8011 Thread-114
+2021-05-01 02:51:11,752 http://34.207.65.75:8011 "GET /item/2 HTTP/1.1" 200 153 Thread-114
+2021-05-01 02:51:11,753 Item with id 2 present in the catalog server. Going ahead to buy it Thread-114
+2021-05-01 02:51:11,754 Starting new HTTP connection (1): 34.207.65.75:8011 Thread-114
+2021-05-01 02:51:11,782 http://34.207.65.75:8011 "PUT /item/2 HTTP/1.1" 201 66 Thread-114
+2021-05-01 02:51:11,783 Successfully bought the item 2 from the catalog server. Thread-114
+2021-05-01 02:51:11,789 trying to propagate update Thread-114
+2021-05-01 02:51:11,790 Starting new HTTP connection (1): 184.72.121.209:8014 Thread-114
+2021-05-01 02:51:11,801 http://184.72.121.209:8014 "PUT /update HTTP/1.1" 200 97 Thread-114
+2021-05-01 02:51:11,802 Propagating update to order database Thread-114
+2021-05-01 02:51:11,823 Propagated update to database Thread-115

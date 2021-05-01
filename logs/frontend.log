@@ -1,0 +1,178 @@
+2021-05-01 02:49:38,437 MainThread INFO This is a main message
+2021-05-01 02:49:40,186 Thread-5 INFO Search method called with the topic name 'distributed systems' in catalog server.
+2021-05-01 02:49:40,186 Thread-5 DEBUG Catalog A is up, Calling Catalog Server A
+2021-05-01 02:49:40,192 Thread-6 INFO Search method called with the topic name 'graduate school' in catalog server.
+2021-05-01 02:49:40,192 Thread-6 DEBUG Catalog B is up, Calling Catalog Server B
+2021-05-01 02:49:40,199 Thread-5 INFO Searching of items with topic 'distributed systems' successful.
+2021-05-01 02:49:40,200 Thread-6 INFO Searching of items with topic 'graduate school' successful.
+2021-05-01 02:49:40,212 Thread-7 INFO Lookup method called with the id '3' in catalog server.
+2021-05-01 02:49:40,212 Thread-7 DEBUG Catalog A is up, Calling Catalog Server A
+2021-05-01 02:49:40,215 Thread-8 INFO Lookup method called with the id '2' in catalog server.
+2021-05-01 02:49:40,215 Thread-8 DEBUG Catalog B is up, Calling Catalog Server B
+2021-05-01 02:49:40,219 Thread-7 INFO Searching of items with id '3' successful.
+2021-05-01 02:49:40,225 Thread-8 INFO Searching of items with id '2' successful.
+2021-05-01 02:49:40,230 Thread-9 INFO Buy method called with the item with id '3' in order server.
+2021-05-01 02:49:40,230 Thread-9 DEBUG Order A is up, Calling Order Server A
+2021-05-01 02:49:40,236 Thread-10 INFO Buy method called with the item with id '2' in order server.
+2021-05-01 02:49:40,236 Thread-10 DEBUG Order B is up, Calling Order Server B
+2021-05-01 02:49:40,296 Thread-9 INFO Purchase of item '3' successfull.
+2021-05-01 02:49:40,316 Thread-10 INFO Purchase of item '2' successfull.
+2021-05-01 02:49:40,335 Thread-11 INFO Search method called with the topic name 'distributed systems' in catalog server.
+2021-05-01 02:49:40,336 Thread-11 DEBUG Catalog A is up, Calling Catalog Server A
+2021-05-01 02:49:40,338 Thread-12 INFO Search method called with the topic name 'distributed systems' in catalog server.
+2021-05-01 02:49:40,338 Thread-12 DEBUG Catalog B is up, Calling Catalog Server B
+2021-05-01 02:49:40,344 Thread-11 INFO Searching of items with topic 'distributed systems' successful.
+2021-05-01 02:49:40,351 Thread-12 INFO Searching of items with topic 'distributed systems' successful.
+2021-05-01 02:49:40,357 Thread-13 INFO Lookup method called with the id '1' in catalog server.
+2021-05-01 02:49:40,358 Thread-13 DEBUG Catalog A is up, Calling Catalog Server A
+2021-05-01 02:49:40,361 Thread-14 INFO Lookup method called with the id '2' in catalog server.
+2021-05-01 02:49:40,361 Thread-14 DEBUG Catalog B is up, Calling Catalog Server B
+2021-05-01 02:49:40,365 Thread-13 INFO Searching of items with id '1' successful.
+2021-05-01 02:49:40,368 Thread-14 INFO Searching of items with id '2' successful.
+2021-05-01 02:49:40,376 Thread-15 INFO Buy method called with the item with id '1' in order server.
+2021-05-01 02:49:40,377 Thread-15 DEBUG Order A is up, Calling Order Server A
+2021-05-01 02:49:40,379 Thread-16 INFO Buy method called with the item with id '2' in order server.
+2021-05-01 02:49:40,379 Thread-16 DEBUG Order B is up, Calling Order Server B
+2021-05-01 02:49:40,443 Thread-15 INFO Purchase of item '1' successfull.
+2021-05-01 02:49:40,465 Thread-16 INFO Purchase of item '2' successfull.
+2021-05-01 02:49:40,484 Thread-17 INFO Search method called with the topic name 'graduate school' in catalog server.
+2021-05-01 02:49:40,484 Thread-17 DEBUG Catalog A is up, Calling Catalog Server A
+2021-05-01 02:49:40,487 Thread-18 INFO Search method called with the topic name 'distributed systems' in catalog server.
+2021-05-01 02:49:40,487 Thread-18 DEBUG Catalog B is up, Calling Catalog Server B
+2021-05-01 02:49:40,492 Thread-17 INFO Searching of items with topic 'graduate school' successful.
+2021-05-01 02:49:40,495 Thread-18 INFO Searching of items with topic 'distributed systems' successful.
+2021-05-01 02:49:40,505 Thread-19 INFO Lookup method called with the id '6' in catalog server.
+2021-05-01 02:49:40,505 Thread-19 DEBUG Catalog A is up, Calling Catalog Server A
+2021-05-01 02:49:40,508 Thread-20 INFO Lookup method called with the id '2' in catalog server.
+2021-05-01 02:49:40,508 Thread-20 DEBUG Catalog B is up, Calling Catalog Server B
+2021-05-01 02:49:40,513 Thread-19 INFO Searching of items with id '6' successful.
+2021-05-01 02:49:40,518 Thread-20 INFO Searching of items with id '2' successful.
+2021-05-01 02:49:40,523 Thread-21 INFO Buy method called with the item with id '6' in order server.
+2021-05-01 02:49:40,524 Thread-21 DEBUG Order A is up, Calling Order Server A
+2021-05-01 02:49:40,526 Thread-22 INFO Buy method called with the item with id '2' in order server.
+2021-05-01 02:49:40,526 Thread-22 DEBUG Order B is up, Calling Order Server B
+2021-05-01 02:49:40,575 Thread-21 INFO Purchase of item '6' successfull.
+2021-05-01 02:49:40,597 Thread-22 INFO Purchase of item '2' successfull.
+2021-05-01 02:49:40,614 Thread-23 INFO Search method called with the topic name 'graduate school' in catalog server.
+2021-05-01 02:49:40,614 Thread-23 DEBUG Catalog A is up, Calling Catalog Server A
+2021-05-01 02:49:40,621 Thread-23 INFO Searching of items with topic 'graduate school' successful.
+2021-05-01 02:49:40,633 Thread-25 INFO Lookup method called with the id '3' in catalog server.
+2021-05-01 02:49:40,633 Thread-25 DEBUG Catalog B is up, Calling Catalog Server B
+2021-05-01 02:49:40,636 Thread-26 INFO Lookup method called with the id '3' in catalog server.
+2021-05-01 02:49:40,636 Thread-26 DEBUG Catalog A is up, Calling Catalog Server A
+2021-05-01 02:49:40,641 Thread-25 INFO Searching of items with id '3' successful.
+2021-05-01 02:49:40,643 Thread-26 INFO Searching of items with id '3' successful.
+2021-05-01 02:49:40,653 Thread-27 INFO Buy method called with the item with id '3' in order server.
+2021-05-01 02:49:40,653 Thread-27 DEBUG Order A is up, Calling Order Server A
+2021-05-01 02:49:40,656 Thread-28 INFO Buy method called with the item with id '3' in order server.
+2021-05-01 02:49:40,656 Thread-28 DEBUG Order B is up, Calling Order Server B
+2021-05-01 02:50:10,785 Thread-28 INFO Purchase of item '3' successfull.
+2021-05-01 02:50:10,792 Thread-27 INFO Purchase of item '3' successfull.
+2021-05-01 02:50:10,810 Thread-29 INFO Search method called with the topic name 'graduate school' in catalog server.
+2021-05-01 02:50:10,810 Thread-29 DEBUG Catalog B is up, Calling Catalog Server B
+2021-05-01 02:50:10,814 Thread-30 INFO Search method called with the topic name 'graduate school' in catalog server.
+2021-05-01 02:50:10,814 Thread-30 DEBUG Catalog A is up, Calling Catalog Server A
+2021-05-01 02:50:10,820 Thread-29 INFO Searching of items with topic 'graduate school' successful.
+2021-05-01 02:50:10,827 Thread-30 INFO Searching of items with topic 'graduate school' successful.
+2021-05-01 02:50:10,830 Thread-31 INFO Lookup method called with the id '6' in catalog server.
+2021-05-01 02:50:10,830 Thread-31 DEBUG Catalog B is up, Calling Catalog Server B
+2021-05-01 02:50:10,837 Thread-32 INFO Lookup method called with the id '4' in catalog server.
+2021-05-01 02:50:10,837 Thread-32 DEBUG Catalog A is up, Calling Catalog Server A
+2021-05-01 02:50:10,839 Thread-31 INFO Searching of items with id '6' successful.
+2021-05-01 02:50:10,848 Thread-32 INFO Searching of items with id '4' successful.
+2021-05-01 02:50:10,851 Thread-33 INFO Buy method called with the item with id '6' in order server.
+2021-05-01 02:50:10,851 Thread-33 DEBUG Order A is up, Calling Order Server A
+2021-05-01 02:50:10,863 Thread-34 INFO Buy method called with the item with id '4' in order server.
+2021-05-01 02:50:10,863 Thread-34 DEBUG Order B is up, Calling Order Server B
+2021-05-01 02:50:10,950 Thread-33 INFO Purchase of item '6' successfull.
+2021-05-01 02:50:10,985 Thread-34 INFO Purchase of item '4' successfull.
+2021-05-01 02:50:11,005 Thread-35 INFO Search method called with the topic name 'distributed systems' in catalog server.
+2021-05-01 02:50:11,005 Thread-35 DEBUG Catalog B is up, Calling Catalog Server B
+2021-05-01 02:50:11,008 Thread-36 INFO Search method called with the topic name 'distributed systems' in catalog server.
+2021-05-01 02:50:11,008 Thread-36 DEBUG Catalog A is up, Calling Catalog Server A
+2021-05-01 02:50:11,014 Thread-35 INFO Searching of items with topic 'distributed systems' successful.
+2021-05-01 02:50:11,016 Thread-36 INFO Searching of items with topic 'distributed systems' successful.
+2021-05-01 02:50:11,028 Thread-37 INFO Lookup method called with the id '2' in catalog server.
+2021-05-01 02:50:11,028 Thread-37 DEBUG Catalog B is up, Calling Catalog Server B
+2021-05-01 02:50:11,030 Thread-38 INFO Lookup method called with the id '1' in catalog server.
+2021-05-01 02:50:11,030 Thread-38 DEBUG Catalog A is up, Calling Catalog Server A
+2021-05-01 02:50:11,036 Thread-37 INFO Searching of items with id '2' successful.
+2021-05-01 02:50:11,038 Thread-38 INFO Searching of items with id '1' successful.
+2021-05-01 02:50:11,048 Thread-39 INFO Buy method called with the item with id '2' in order server.
+2021-05-01 02:50:11,048 Thread-39 DEBUG Order A is up, Calling Order Server A
+2021-05-01 02:50:11,051 Thread-40 INFO Buy method called with the item with id '1' in order server.
+2021-05-01 02:50:11,051 Thread-40 DEBUG Order B is up, Calling Order Server B
+2021-05-01 02:50:41,181 Thread-39 INFO Purchase of item '2' successfull.
+2021-05-01 02:50:41,199 Thread-40 INFO Purchase of item '1' successfull.
+2021-05-01 02:50:41,218 Thread-41 INFO Search method called with the topic name 'distributed systems' in catalog server.
+2021-05-01 02:50:41,218 Thread-41 DEBUG Catalog B is up, Calling Catalog Server B
+2021-05-01 02:50:41,221 Thread-42 INFO Search method called with the topic name 'distributed systems' in catalog server.
+2021-05-01 02:50:41,221 Thread-42 DEBUG Catalog A is up, Calling Catalog Server A
+2021-05-01 02:50:41,227 Thread-41 INFO Searching of items with topic 'distributed systems' successful.
+2021-05-01 02:50:41,229 Thread-42 INFO Searching of items with topic 'distributed systems' successful.
+2021-05-01 02:50:41,238 Thread-43 INFO Lookup method called with the id '1' in catalog server.
+2021-05-01 02:50:41,238 Thread-43 DEBUG Catalog B is up, Calling Catalog Server B
+2021-05-01 02:50:41,243 Thread-44 INFO Lookup method called with the id '5' in catalog server.
+2021-05-01 02:50:41,243 Thread-44 DEBUG Catalog A is up, Calling Catalog Server A
+2021-05-01 02:50:41,245 Thread-43 INFO Searching of items with id '1' successful.
+2021-05-01 02:50:41,254 Thread-44 INFO Searching of items with id '5' successful.
+2021-05-01 02:50:41,256 Thread-45 INFO Buy method called with the item with id '1' in order server.
+2021-05-01 02:50:41,257 Thread-45 DEBUG Order A is up, Calling Order Server A
+2021-05-01 02:50:41,266 Thread-46 INFO Buy method called with the item with id '5' in order server.
+2021-05-01 02:50:41,266 Thread-46 DEBUG Order B is up, Calling Order Server B
+2021-05-01 02:50:41,313 Thread-45 INFO Purchase of item '1' successfull.
+2021-05-01 02:50:41,332 Thread-46 INFO Purchase of item '5' successfull.
+2021-05-01 02:50:41,352 Thread-47 INFO Search method called with the topic name 'graduate school' in catalog server.
+2021-05-01 02:50:41,352 Thread-47 DEBUG Catalog B is up, Calling Catalog Server B
+2021-05-01 02:50:41,355 Thread-48 INFO Search method called with the topic name 'distributed systems' in catalog server.
+2021-05-01 02:50:41,355 Thread-48 DEBUG Catalog A is up, Calling Catalog Server A
+2021-05-01 02:50:41,361 Thread-47 INFO Searching of items with topic 'graduate school' successful.
+2021-05-01 02:50:41,369 Thread-48 INFO Searching of items with topic 'distributed systems' successful.
+2021-05-01 02:50:41,372 Thread-49 INFO Lookup method called with the id '4' in catalog server.
+2021-05-01 02:50:41,372 Thread-49 DEBUG Catalog B is up, Calling Catalog Server B
+2021-05-01 02:50:41,379 Thread-50 INFO Lookup method called with the id '5' in catalog server.
+2021-05-01 02:50:41,379 Thread-50 DEBUG Catalog A is up, Calling Catalog Server A
+2021-05-01 02:50:41,382 Thread-49 INFO Searching of items with id '4' successful.
+2021-05-01 02:50:41,392 Thread-50 INFO Searching of items with id '5' successful.
+2021-05-01 02:50:41,395 Thread-51 INFO Buy method called with the item with id '4' in order server.
+2021-05-01 02:50:41,395 Thread-51 DEBUG Order A is up, Calling Order Server A
+2021-05-01 02:50:41,406 Thread-52 INFO Buy method called with the item with id '5' in order server.
+2021-05-01 02:50:41,406 Thread-52 DEBUG Order B is up, Calling Order Server B
+2021-05-01 02:50:41,459 Thread-51 INFO Purchase of item '4' successfull.
+2021-05-01 02:50:41,478 Thread-52 INFO Purchase of item '5' successfull.
+2021-05-01 02:50:41,498 Thread-53 INFO Search method called with the topic name 'graduate school' in catalog server.
+2021-05-01 02:50:41,498 Thread-53 DEBUG Catalog B is up, Calling Catalog Server B
+2021-05-01 02:50:41,501 Thread-54 INFO Search method called with the topic name 'graduate school' in catalog server.
+2021-05-01 02:50:41,501 Thread-54 DEBUG Catalog A is up, Calling Catalog Server A
+2021-05-01 02:50:41,507 Thread-53 INFO Searching of items with topic 'graduate school' successful.
+2021-05-01 02:50:41,514 Thread-54 INFO Searching of items with topic 'graduate school' successful.
+2021-05-01 02:50:41,520 Thread-55 INFO Lookup method called with the id '3' in catalog server.
+2021-05-01 02:50:41,520 Thread-55 DEBUG Catalog B is up, Calling Catalog Server B
+2021-05-01 02:50:41,523 Thread-56 INFO Lookup method called with the id '4' in catalog server.
+2021-05-01 02:50:41,523 Thread-56 DEBUG Catalog A is up, Calling Catalog Server A
+2021-05-01 02:50:41,528 Thread-55 INFO Searching of items with id '3' successful.
+2021-05-01 02:50:41,530 Thread-56 INFO Searching of items with id '4' successful.
+2021-05-01 02:50:41,539 Thread-57 INFO Buy method called with the item with id '3' in order server.
+2021-05-01 02:50:41,539 Thread-57 DEBUG Order A is up, Calling Order Server A
+2021-05-01 02:50:41,542 Thread-58 INFO Buy method called with the item with id '4' in order server.
+2021-05-01 02:50:41,542 Thread-58 DEBUG Order B is up, Calling Order Server B
+2021-05-01 02:51:11,673 Thread-58 INFO Purchase of item '4' successfull.
+2021-05-01 02:51:11,681 Thread-57 INFO Purchase of item '3' successfull.
+2021-05-01 02:51:11,698 Thread-59 INFO Search method called with the topic name 'distributed systems' in catalog server.
+2021-05-01 02:51:11,698 Thread-59 DEBUG Catalog B is up, Calling Catalog Server B
+2021-05-01 02:51:11,703 Thread-60 INFO Search method called with the topic name 'graduate school' in catalog server.
+2021-05-01 02:51:11,703 Thread-60 DEBUG Catalog A is up, Calling Catalog Server A
+2021-05-01 02:51:11,707 Thread-59 INFO Searching of items with topic 'distributed systems' successful.
+2021-05-01 02:51:11,718 Thread-61 INFO Lookup method called with the id '2' in catalog server.
+2021-05-01 02:51:11,718 Thread-60 INFO Searching of items with topic 'graduate school' successful.
+2021-05-01 02:51:11,718 Thread-61 DEBUG Catalog B is up, Calling Catalog Server B
+2021-05-01 02:51:11,726 Thread-62 INFO Lookup method called with the id '7' in catalog server.
+2021-05-01 02:51:11,726 Thread-62 DEBUG Catalog A is up, Calling Catalog Server A
+2021-05-01 02:51:11,731 Thread-61 INFO Searching of items with id '2' successful.
+2021-05-01 02:51:11,737 Thread-62 INFO Searching of items with id '7' successful.
+2021-05-01 02:51:11,742 Thread-63 INFO Buy method called with the item with id '2' in order server.
+2021-05-01 02:51:11,742 Thread-63 DEBUG Order A is up, Calling Order Server A
+2021-05-01 02:51:11,748 Thread-64 INFO Buy method called with the item with id '7' in order server.
+2021-05-01 02:51:11,748 Thread-64 DEBUG Order B is up, Calling Order Server B
+2021-05-01 02:51:11,804 Thread-63 INFO Purchase of item '2' successfull.
+2021-05-01 02:51:11,827 Thread-64 INFO Purchase of item '7' successfull.

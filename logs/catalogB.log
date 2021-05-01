@@ -1,0 +1,160 @@
+2021-05-01 02:49:34,119 restarting after a crash
+2021-05-01 02:49:34,124 Starting new HTTP connection (1): 34.207.65.75:8011
+2021-05-01 02:49:34,132 http://34.207.65.75:8011 "GET /item HTTP/1.1" 200 794
+2021-05-01 02:49:34,133 got request
+2021-05-01 02:49:34,134 dropped table
+2021-05-01 02:49:40,201 Looking up the items with topic 'graduate school' in catalog database.
+2021-05-01 02:49:40,202 Lookup Successful
+2021-05-01 02:49:40,224 Looking up the item with id '2' in catalog database.
+2021-05-01 02:49:40,225 Lookup Successful
+2021-05-01 02:49:40,251 Looking up the item with id '2' in catalog database.
+2021-05-01 02:49:40,252 Lookup Successful
+2021-05-01 02:49:40,257 Looking up the item with id '3' in catalog database for updating the item.
+2021-05-01 02:49:40,257 Updating the count of item 3
+2021-05-01 02:49:40,259 Looking up the item with id '2' in catalog database for updating the item.
+2021-05-01 02:49:40,266 Catalog database update successful
+2021-05-01 02:49:40,268 Updating the count of item 2
+2021-05-01 02:49:40,268 Trying to propagate the update 2
+2021-05-01 02:49:40,269 Starting new HTTP connection (1): 34.207.65.75:8011
+2021-05-01 02:49:40,286 http://34.207.65.75:8011 "PUT /item/propagate/2 HTTP/1.1" 201 66
+2021-05-01 02:49:40,287 Propagating the count of item 2
+2021-05-01 02:49:40,299 Catalog database update successful
+2021-05-01 02:49:40,351 Looking up the items with topic 'distributed systems' in catalog database.
+2021-05-01 02:49:40,352 Lookup Successful
+2021-05-01 02:49:40,370 Looking up the item with id '2' in catalog database.
+2021-05-01 02:49:40,370 Lookup Successful
+2021-05-01 02:49:40,398 Looking up the item with id '2' in catalog database.
+2021-05-01 02:49:40,399 Lookup Successful
+2021-05-01 02:49:40,403 Looking up the item with id '1' in catalog database for updating the item.
+2021-05-01 02:49:40,403 Updating the count of item 1
+2021-05-01 02:49:40,410 Looking up the item with id '2' in catalog database for updating the item.
+2021-05-01 02:49:40,415 Catalog database update successful
+2021-05-01 02:49:40,419 Updating the count of item 2
+2021-05-01 02:49:40,419 Trying to propagate the update 2
+2021-05-01 02:49:40,421 Starting new HTTP connection (1): 34.207.65.75:8011
+2021-05-01 02:49:40,437 http://34.207.65.75:8011 "PUT /item/propagate/2 HTTP/1.1" 201 66
+2021-05-01 02:49:40,438 Propagating the count of item 2
+2021-05-01 02:49:40,446 Catalog database update successful
+2021-05-01 02:49:40,497 Looking up the items with topic 'distributed systems' in catalog database.
+2021-05-01 02:49:40,498 Lookup Successful
+2021-05-01 02:49:40,517 Looking up the item with id '2' in catalog database.
+2021-05-01 02:49:40,518 Lookup Successful
+2021-05-01 02:49:40,547 Looking up the item with id '6' in catalog database for updating the item.
+2021-05-01 02:49:40,548 Updating the count of item 6
+2021-05-01 02:49:40,549 Looking up the item with id '2' in catalog database.
+2021-05-01 02:49:40,553 Catalog database update successful
+2021-05-01 02:49:40,558 Lookup Successful
+2021-05-01 02:49:40,564 Looking up the item with id '2' in catalog database for updating the item.
+2021-05-01 02:49:40,564 Updating the count of item 2
+2021-05-01 02:49:40,565 Trying to propagate the update 2
+2021-05-01 02:49:40,566 Starting new HTTP connection (1): 34.207.65.75:8011
+2021-05-01 02:49:40,575 http://34.207.65.75:8011 "PUT /item/propagate/2 HTTP/1.1" 201 66
+2021-05-01 02:49:40,577 Propagating the count of item 2
+2021-05-01 02:49:40,581 Catalog database update successful
+2021-05-01 02:49:40,642 Looking up the item with id '3' in catalog database.
+2021-05-01 02:49:40,643 Lookup Successful
+2021-05-01 02:49:40,670 Looking up the item with id '3' in catalog database.
+2021-05-01 02:49:40,671 Lookup Successful
+2021-05-01 02:49:40,676 Looking up the item with id '3' in catalog database for updating the item.
+2021-05-01 02:49:40,677 Updating the count of item 3
+2021-05-01 02:49:40,677 Trying to propagate the update 3
+2021-05-01 02:49:40,678 Starting new HTTP connection (1): 34.207.65.75:8011
+2021-05-01 02:49:40,680 Looking up the item with id '3' in catalog database for updating the item.
+2021-05-01 02:49:40,680 Updating the count of item 3
+2021-05-01 02:50:10,761 http://34.207.65.75:8011 "PUT /item/propagate/3 HTTP/1.1" 500 73
+2021-05-01 02:50:10,762 Propagating the count of item 3
+2021-05-01 02:50:10,768 Catalog database update successful
+2021-05-01 02:50:10,819 Looking up the items with topic 'graduate school' in catalog database.
+2021-05-01 02:50:10,820 Lookup Successful
+2021-05-01 02:50:10,841 Looking up the item with id '6' in catalog database.
+2021-05-01 02:50:10,841 Lookup Successful
+2021-05-01 02:50:10,877 Looking up the item with id '4' in catalog database.
+2021-05-01 02:50:10,878 Lookup Successful
+2021-05-01 02:50:10,883 Looking up the item with id '6' in catalog database for updating the item.
+2021-05-01 02:50:10,883 Updating the count of item 6
+2021-05-01 02:50:10,884 Looking up the item with id '4' in catalog database for updating the item.
+2021-05-01 02:50:10,921 Catalog database update successful
+2021-05-01 02:50:10,941 Updating the count of item 4
+2021-05-01 02:50:10,941 Trying to propagate the update 4
+2021-05-01 02:50:10,945 Starting new HTTP connection (1): 34.207.65.75:8011
+2021-05-01 02:50:10,961 http://34.207.65.75:8011 "PUT /item/propagate/4 HTTP/1.1" 201 66
+2021-05-01 02:50:10,962 Propagating the count of item 4
+2021-05-01 02:50:10,968 Catalog database update successful
+2021-05-01 02:50:11,015 Looking up the items with topic 'distributed systems' in catalog database.
+2021-05-01 02:50:11,016 Lookup Successful
+2021-05-01 02:50:11,037 Looking up the item with id '2' in catalog database.
+2021-05-01 02:50:11,038 Lookup Successful
+2021-05-01 02:50:11,065 Looking up the item with id '1' in catalog database.
+2021-05-01 02:50:11,066 Lookup Successful
+2021-05-01 02:50:11,071 Looking up the item with id '1' in catalog database for updating the item.
+2021-05-01 02:50:11,072 Updating the count of item 1
+2021-05-01 02:50:11,072 Trying to propagate the update 1
+2021-05-01 02:50:11,074 Starting new HTTP connection (1): 34.207.65.75:8011
+2021-05-01 02:50:11,075 Looking up the item with id '2' in catalog database for updating the item.
+2021-05-01 02:50:11,075 Updating the count of item 2
+2021-05-01 02:50:41,152 http://34.207.65.75:8011 "PUT /item/propagate/1 HTTP/1.1" 500 73
+2021-05-01 02:50:41,154 Propagating the count of item 1
+2021-05-01 02:50:41,182 Catalog database update successful
+2021-05-01 02:50:41,228 Looking up the items with topic 'distributed systems' in catalog database.
+2021-05-01 02:50:41,229 Lookup Successful
+2021-05-01 02:50:41,246 Looking up the item with id '1' in catalog database.
+2021-05-01 02:50:41,247 Lookup Successful
+2021-05-01 02:50:41,278 Looking up the item with id '5' in catalog database.
+2021-05-01 02:50:41,278 Lookup Successful
+2021-05-01 02:50:41,283 Looking up the item with id '1' in catalog database for updating the item.
+2021-05-01 02:50:41,284 Updating the count of item 1
+2021-05-01 02:50:41,285 Looking up the item with id '5' in catalog database for updating the item.
+2021-05-01 02:50:41,290 Catalog database update successful
+2021-05-01 02:50:41,295 Updating the count of item 5
+2021-05-01 02:50:41,295 Trying to propagate the update 5
+2021-05-01 02:50:41,296 Starting new HTTP connection (1): 34.207.65.75:8011
+2021-05-01 02:50:41,310 http://34.207.65.75:8011 "PUT /item/propagate/5 HTTP/1.1" 201 66
+2021-05-01 02:50:41,311 Propagating the count of item 5
+2021-05-01 02:50:41,317 Catalog database update successful
+2021-05-01 02:50:41,360 Looking up the items with topic 'graduate school' in catalog database.
+2021-05-01 02:50:41,361 Lookup Successful
+2021-05-01 02:50:41,383 Looking up the item with id '4' in catalog database.
+2021-05-01 02:50:41,384 Lookup Successful
+2021-05-01 02:50:41,419 Looking up the item with id '5' in catalog database.
+2021-05-01 02:50:41,420 Lookup Successful
+2021-05-01 02:50:41,423 Looking up the item with id '4' in catalog database for updating the item.
+2021-05-01 02:50:41,423 Updating the count of item 4
+2021-05-01 02:50:41,427 Looking up the item with id '5' in catalog database for updating the item.
+2021-05-01 02:50:41,431 Catalog database update successful
+2021-05-01 02:50:41,436 Updating the count of item 5
+2021-05-01 02:50:41,436 Trying to propagate the update 5
+2021-05-01 02:50:41,438 Starting new HTTP connection (1): 34.207.65.75:8011
+2021-05-01 02:50:41,451 http://34.207.65.75:8011 "PUT /item/propagate/5 HTTP/1.1" 201 66
+2021-05-01 02:50:41,452 Propagating the count of item 5
+2021-05-01 02:50:41,462 Catalog database update successful
+2021-05-01 02:50:41,506 Looking up the items with topic 'graduate school' in catalog database.
+2021-05-01 02:50:41,507 Lookup Successful
+2021-05-01 02:50:41,529 Looking up the item with id '3' in catalog database.
+2021-05-01 02:50:41,530 Lookup Successful
+2021-05-01 02:50:41,557 Looking up the item with id '4' in catalog database.
+2021-05-01 02:50:41,557 Lookup Successful
+2021-05-01 02:50:41,563 Looking up the item with id '4' in catalog database for updating the item.
+2021-05-01 02:50:41,563 Updating the count of item 4
+2021-05-01 02:50:41,564 Trying to propagate the update 4
+2021-05-01 02:50:41,565 Starting new HTTP connection (1): 34.207.65.75:8011
+2021-05-01 02:50:41,566 Looking up the item with id '3' in catalog database for updating the item.
+2021-05-01 02:50:41,567 Updating the count of item 3
+2021-05-01 02:51:11,646 http://34.207.65.75:8011 "PUT /item/propagate/4 HTTP/1.1" 500 73
+2021-05-01 02:51:11,648 Propagating the count of item 4
+2021-05-01 02:51:11,655 Catalog database update successful
+2021-05-01 02:51:11,707 Looking up the items with topic 'distributed systems' in catalog database.
+2021-05-01 02:51:11,707 Lookup Successful
+2021-05-01 02:51:11,732 Looking up the item with id '2' in catalog database.
+2021-05-01 02:51:11,732 Lookup Successful
+2021-05-01 02:51:11,765 Looking up the item with id '7' in catalog database.
+2021-05-01 02:51:11,765 Lookup Successful
+2021-05-01 02:51:11,770 Looking up the item with id '2' in catalog database for updating the item.
+2021-05-01 02:51:11,771 Updating the count of item 2
+2021-05-01 02:51:11,772 Looking up the item with id '7' in catalog database for updating the item.
+2021-05-01 02:51:11,778 Catalog database update successful
+2021-05-01 02:51:11,781 Updating the count of item 7
+2021-05-01 02:51:11,781 Trying to propagate the update 7
+2021-05-01 02:51:11,783 Starting new HTTP connection (1): 34.207.65.75:8011
+2021-05-01 02:51:11,798 http://34.207.65.75:8011 "PUT /item/propagate/7 HTTP/1.1" 201 66
+2021-05-01 02:51:11,799 Propagating the count of item 7
+2021-05-01 02:51:11,808 Catalog database update successful
