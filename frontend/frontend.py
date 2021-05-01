@@ -72,6 +72,7 @@ ORDER_SERVER_A = {"type": "order", "url": str(sys.argv[6])}
 ORDER_SERVER_B = {"type": "order", "url": str(sys.argv[7])}
 ##################################
 
+#Function to check if the specified <IP,port> is up
 def isUp(ip,port):
    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
    try:
@@ -126,14 +127,12 @@ def buy():
                 order_lock.release()
                 app.logger.debug('Order A is up, Calling Order Server A')
                 results=requests.get("%s/buy/%s"%(ORDER_SERVER_A["url"],id))
-                # results=results.json()
             else:
                 if app.config['orderB_status'] == "UP" and app.config['catalogB_status'] == "UP":
                     app.config['load_balancer_order'] = 1
                     order_lock.release()
                     app.logger.debug('Order A is down, Calling Order Server B')
                     results=requests.get("%s/buy/%s"%(ORDER_SERVER_B["url"],id))
-                    # results=results.json()
                 else:
                     raise Exception("Both order servers are down")
 
@@ -143,14 +142,12 @@ def buy():
                 order_lock.release()
                 app.logger.debug('Order B is up, Calling Order Server B')
                 results=requests.get("%s/buy/%s"%(ORDER_SERVER_B["url"],id))
-                # results=results.json()
             else:
                 if app.config['orderA_status'] == "UP" and app.config['catalogA_status'] == "UP":
                     app.config['load_balancer_order'] = 0
                     order_lock.release()
                     app.logger.debug('Order B is down, Calling Order Server A')
                     results=requests.get("%s/buy/%s"%(ORDER_SERVER_A["url"],id))
-                    # results=results.json()
                 else:
                     raise Exception("Both order servers are down")
         
