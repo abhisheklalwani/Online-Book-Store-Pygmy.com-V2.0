@@ -104,10 +104,10 @@ if __name__ == "__main__":
     
         for i in range(n):
             processes.append(multiprocessing.Process(target=client_call, args=(i, )))
-            for process in processes:
-                process.start()
-            for process in processes:
-                process.join()
+        for process in processes:
+            process.start()
+        for process in processes:
+            process.join()
 
         print('Iteration ',j+1,' Complete.')
     
