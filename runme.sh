@@ -2,6 +2,7 @@
 myip="$(dig +short myip.opendns.com @resolver1.opendns.com)"
 source env.cfg
 
+#Function to copy the repository from local to remote servers
 copy_repo()
 {
 	if [[ $2 == $myip ]];
@@ -13,6 +14,7 @@ copy_repo()
 	fi
 }
 
+#Function to copy the log files from different servers
 get_log_files()
 { 
 	if [[ $2 == $myip ]]; then
@@ -36,6 +38,7 @@ get_log_files()
 
 }
 
+#Function to deploy container servers
 deploy_server()
 {
 	run_server_file=$3
@@ -47,19 +50,22 @@ deploy_server()
 		echo "###### Deploying $1 server on the server with public IP: $2 ######"
 		sleep 2
 		ip=$2
-		#scp -i ${pem_file} env.cfg ubuntu@${ip}:/home/ubuntu/
-		#scp -i ${pem_file} ${run_server_file} ubuntu@${ip}:/home/ubuntu/
 		ssh -i ${pem_file} ubuntu@${ip} "cd pygmy && chmod +x ${run_server_file}" 
 		ssh -i ${pem_file} ubuntu@${ip} "cd pygmy && . ./${run_server_file}"
 	fi
 
 }
+
+#Copying the Source files to different servers
+echo "###### Copying the Source files to different server. ######"
 copy_repo orderA ${orderA_ip}
 copy_repo orderB ${orderB_ip}
 copy_repo catalogA ${catalogA_ip}
 copy_repo catalogB ${catalogB_ip}
 copy_repo frontend ${frontend_ip}
 
+#Deploying the container servers
+echo "###### Deploying the container servers. ######"
 deploy_server orderA ${orderA_ip} run_orderA_server.sh
 deploy_server orderB ${orderB_ip} run_orderB_server.sh
 deploy_server catalogA ${catalogA_ip} run_catalogA_server.sh
@@ -70,7 +76,8 @@ echo "###### Starting the Client Process. ######"
 sleep 2
 python client.py "http://${frontend_ip}" ${frontend_port} 2
 
-echo "###### Copying log files. ######"
+#Copying log files locally to the folder ./logs/
+echo "###### Copying log files locally to the folder ./logs/. ######"
 get_log_files orderA ${orderA_ip}
 get_log_files orderB ${orderB_ip}
 get_log_files catalogA ${catalogA_ip}
