@@ -99,17 +99,17 @@ if __name__ == "__main__":
     print("Please wait. This step will take a few minutes to run.")
     print("Check out the ./client.log for final pass/fail logs.")
 
-    for i in range(10):
+    for j in range(10):
         processes = []
     
         for i in range(n):
             processes.append(multiprocessing.Process(target=client_call, args=(i, )))
-        for process in processes:
-            process.start()
-        for process in processes:
-            process.join()
+            for process in processes:
+                process.start()
+            for process in processes:
+                process.join()
 
-        print('Iteration ',i+1,' Complete.')
+        print('Iteration ',j+1,' Complete.')
     
     print('Process Completed. Please refer to logs to check the results of the run.') 
 
