@@ -1,4 +1,4 @@
-# Book-Store
+# PYGMY - The Retail Book Store 2.0
 
 This repository contains implementation of the Lab 3 Project of COMPSCI 677 course at UMass Amherst. <br>
 Contributors - <br>
@@ -29,8 +29,9 @@ Installing Docker
 5. `requirements.txt` contains the python libraries required.
 6. `env.cfg` contains the `PUBLIC_IP` and `PORT` of the machines where the catalog, order and frontend server has to be run. It also contains the reference to the `pem` file that is required to ssh, and scp to the remote machines. Modify the file according to your requirements.
 7. `runme.sh` is a single script to automatically deploy catalog, order and frontend docker servers on specified machines in `env.cfg`, run the client.py and get the logs from all the servers.
-8. `const.py` contains information about the books in the catalog server.
-9. `Docs` contains the design documentation 
+8. `simulate_fault_tolerance.sh` is a single script to check falut tolerance of the system. The script specifically brings down the catalogA and invokes the client.py to check if the system is working correctly even if one of the server is down. Then it brings the server up and calls the python file `test_server_recovery.py` to check if the system was able to recover from the crash. 
+9. `const.py` contains information about the books in the catalog server.
+10. `Docs` contains the design documentation 
 
 Please find the instructions below for testing the implementation.
 
@@ -52,5 +53,10 @@ Please find the instructions below for testing the implementation.
 4. Define the ip and ports of order, catalog and front end server by editing the `env.cfg` file. Change the port IDs of the servers as pleased. Also provide the path of the pem file. Instructions to change the file is specified in the same.
 5. Now, on your local machine, run the `runme.sh` file which deploy all the dockers and then trigger the client.py for starting the traffic. USAGE: `. ./runme.sh`.
 6. You can observe the results of this run in different log files that should be accumulated under the folder `logs`. `client.log` in the main folder will contain the logs of `client.py` script.
+
+### To simute and check fault tolerance of the system
+
+1. Execute the shell script `simulate_fault_tolerance.sh` using the command `. ./simulate_fault_tolerance.sh`.
+2. Check the the log file `test_server_recovery.log` to check if the system was able to recover from the crash of catalogA server.
 
 
