@@ -113,6 +113,19 @@ def hello_world():
     app.logger.info("I am here")
     return "Welcome to Book Store!"
 
+##################################
+# We have implemented round robin load-balancing in our system which is handled via 2
+# load balancing catalog variables i.e load_balancer_catalog and load_balancer_order.
+# Their value keeps flipping between 0 and 1 after every use.
+# We have also implemented the heartbeat mechanism which we use to determine whether
+# the servers which we are about to contact are up and running.
+# We have also implemented locking to prevent concurrent access to the load-balancer
+# variables which ensures smooth load balancing in case of parallel threads.
+# We also have our fault tolerance mechanism which contacts the other catalog/order
+# server in case heartbeat of the initial server is down or there was any issue connecting
+# to the first server.
+##################################
+
 # the buy method which makes calls to the order server to buy an item based on provided item id
 @app.route('/buy', methods=['GET'])
 def buy():
