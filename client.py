@@ -109,7 +109,7 @@ if __name__ == "__main__":
         for process in processes:
             process.join()
 
-        print('Iteration ',j+1,' Complete.')
+        print("Iteration %s Complete."%(j+1))
     
     print('Process Completed. Please refer to logs to check the results of the run.') 
 
